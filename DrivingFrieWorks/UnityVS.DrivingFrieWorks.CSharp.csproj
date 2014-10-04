@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Global.cs" />
+    <Compile Include="Assets\Scripts\LineNote.cs" />
     <Compile Include="Assets\Scripts\LoadPlayMusic.cs" />
     <Compile Include="Assets\Scripts\LongNote.cs" />
     <Compile Include="Assets\Scripts\Note.cs" />

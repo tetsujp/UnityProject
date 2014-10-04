@@ -9,9 +9,9 @@ public class LoadPlayMusic : MonoBehaviour
 
     //ロードしたNoteを一時的に入れるリスト
     //リストの実態はまだ作られていない
-    List<Note>[] tempLoadList;
+    LineNote[] tempLoadList;
     double endTime;
-
+    public GameObject lineNote;
 
 
     // Use this for initialization
@@ -35,10 +35,10 @@ public class LoadPlayMusic : MonoBehaviour
             return;
         }
         string loopBuf;
-        tempLoadList = new List<Note>[Global.MAX_LINE];
+        tempLoadList = new LineNote[Global.MAX_LINE];
         //リストのインスタンス作成
         //空のリストを実際に入れる
-        for (var i = 0; i < Global.MAX_LINE; i++) tempLoadList[i] = new List<Note>();
+        for (var i = 0; i < Global.MAX_LINE; i++) tempLoadList[i] = (LineNote)Instantiate(lineNote);
 
         while (!readEndFlag)
         {
@@ -170,7 +170,11 @@ public class LoadPlayMusic : MonoBehaviour
                         Note data;
 
                         //表示時間の設定
+                        //変更が必要？
+
                         double apperTime = judgeTime - hakuTime * playStateScript.multspd;
+                        
+                        
                         //ロングノートにする
                         if (longStartFlag)
                         {
@@ -221,7 +225,7 @@ public class LoadPlayMusic : MonoBehaviour
 
     }
 
-    public List<Note>[] GetList() { return tempLoadList; }
+    public LineNote[] GetAllNoteList() { return tempLoadList; }
 
 
 

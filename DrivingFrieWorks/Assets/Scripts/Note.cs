@@ -12,7 +12,8 @@ public class Note : MonoBehaviour
 
     //プレイステータス
     public noteDisplayState displayState{get;set;}
-    public Get
+    public double GetApperTime(){return apperTime;}
+    public double GetJudgeTime(){return judgeTime;}
 
     private char c_buf;
 
@@ -38,4 +39,5 @@ public class Note : MonoBehaviour
     {
 
     }
+
 }
