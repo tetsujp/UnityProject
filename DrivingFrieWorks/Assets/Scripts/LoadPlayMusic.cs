@@ -11,8 +11,12 @@ public class LoadPlayMusic : MonoBehaviour
     //リストの実態はまだ作られていない
     LineNote[] tempLoadList;
     double endTime;
-    public GameObject lineNote;
-
+    
+    //プレハブ
+    public GameObject prefabLineNote;//Line
+    public GameObject prefabSingleNote;//Single
+    public GameObject prefabLongNote;//Long
+    public GameObject prefabNoteOwner;
 
     // Use this for initialization
     void Start()
@@ -25,7 +29,7 @@ public class LoadPlayMusic : MonoBehaviour
 
         //共通情報取得
         PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
-        string filePath = "Assets/music/" + playStateScript.selectName + "note[" + difficulty.GetName(Type.GetType("difficulty"), playStateScript.diff) + "].txt";
+        string filePath = "Assets/Music/" + playStateScript.selectName + difficulty.GetName(Type.GetType("difficulty"), playStateScript.diff) + ".txt";
         FileStream f = new FileStream(filePath, FileMode.Open, FileAccess.Read);
         StreamReader reader = new StreamReader(f);
         //読み込み失敗
@@ -35,10 +39,17 @@ public class LoadPlayMusic : MonoBehaviour
             return;
         }
         string loopBuf;
-        tempLoadList = new LineNote[Global.MAX_LINE];
+        //tempLoadList = new LineNote[Global.MAX_LINE];
         //リストのインスタンス作成
+        tempLoadList = new LineNote[Global.MAX_LINE];
         //空のリストを実際に入れる
-        for (var i = 0; i < Global.MAX_LINE; i++) tempLoadList[i] = (LineNote)Instantiate(lineNote);
+        for (var i = 0; i < Global.MAX_LINE; i++)
+        {
+            /*tempLoadList[i] = (LineNote)Instantiate(prefabLineNote);*/
+            GameObject obj = (GameObject)Instantiate(prefabLineNote);
+            tempLoadList[i] = obj.GetComponent<LineNote>();
+        }
+
 
         while (!readEndFlag)
         {
@@ -82,6 +93,9 @@ public class LoadPlayMusic : MonoBehaviour
                 //List<LongNote> tempLongData=new LongNote[Global.MAXLINE];
                 //実態は持っていない
                 LongNote[] tempLongData = new LongNote[Global.MAX_LINE];
+               
+
+                
                 //ダミーのデータ挿入
                 //for (var i = 0; i < Global.MAXLINE; i++) tempLongData.Add(new LongNote());
 
@@ -99,17 +113,19 @@ public class LoadPlayMusic : MonoBehaviour
                     int readCount = 0;
 
                     //1文字読み込み
-                    char c_buf = buf[readCount];
+                    //string str = buf[readCount].ToString();
+                    //char c_buf = buf[readCount];
+                    string c_buf = buf[readCount].ToString();
                     readCount++;
 
                     //次の泊へ
-                    if (c_buf == ',')
+                    if (c_buf == ",")
                     {
                         judgeTime += hakuTime;
                     }
 
                     //Bpm変更開始
-                    else if (c_buf == '#')
+                    else if (c_buf == "#")
                     {
                         string tBpm = String.Empty; ;
                         //&が出るまでの数字
@@ -119,12 +135,13 @@ public class LoadPlayMusic : MonoBehaviour
                             readCount++;
                         }
                         //BPM変更とhakutimeの修正
-                        bpmTemp = Convert.ToDouble(tBpm);
+                        //bpmTemp = Convert.ToDouble(tBpm);
+                        bpmTemp = double.Parse(tBpm);
                         hakuTime = (60 * Global.MILLI_SECONDS * 4 / (bpmTemp)) * syosetsuNum;
                     }
 
                         //泊数変更
-                    else if (c_buf == '@')
+                    else if (c_buf == "@")
                     {
                         string tSyosetsuNum = String.Empty; ;
                         //&が出るまでの数字
@@ -134,12 +151,13 @@ public class LoadPlayMusic : MonoBehaviour
                             readCount++;
                         }
                         //１泊の時間変更
-                        syosetsuNum = Convert.ToDouble(tSyosetsuNum);
+                        //syosetsuNum = Convert.ToDouble(tSyosetsuNum);
+                        syosetsuNum = double.Parse(tSyosetsuNum);
                         hakuTime = (60 * Global.MILLI_SECONDS * 4 / (bpmTemp)) * syosetsuNum;
                     }
 
                         //コメント
-                    else if (c_buf == '/')
+                    else if (c_buf == "/")
                     {
                         while (buf[readCount] != '&')
                         {
@@ -148,13 +166,13 @@ public class LoadPlayMusic : MonoBehaviour
                     }
 
                         //終了時間
-                    else if (c_buf == 'E')
+                    else if (c_buf == "E")
                     {
                         endTime = judgeTime;
                     }
                     //ロングノート開始
                     //次の数字のノートをロングノートにする
-                    else if (c_buf == '!')
+                    else if (c_buf == "!")
                     {
                         longStartFlag = true;
 
@@ -164,8 +182,8 @@ public class LoadPlayMusic : MonoBehaviour
                     else
                     {
                         //charからintへ変換
-                        int intBuf = Convert.ToInt32(c_buf);
-
+                        //int intBuf = Convert.ToInt32(c_buf);
+                        int intBuf = int.Parse(c_buf);
                         //リストにデータを入れる
                         Note data;
 
@@ -180,7 +198,8 @@ public class LoadPlayMusic : MonoBehaviour
                         {
 
                             longLineFlag[intBuf] = true;
-                            LongNote l = new LongNote();
+                            //LongNote l = new LongNote();
+                            LongNote l = (LongNote)Instantiate(prefabLongNote);
                             l.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
                             tempLongData[intBuf] = l;
 
@@ -194,7 +213,10 @@ public class LoadPlayMusic : MonoBehaviour
                         //単ノートはこのまま入る
                         if (longLineFlag[intBuf] == false)
                         {
-                            SingleNote s=new SingleNote();
+                            //SingleNote s=new SingleNote();
+                            //SingleNote s= (SingleNote)Instantiate(prefabSingleNote);
+                            GameObject single = (GameObject)Instantiate(prefabSingleNote);
+                            SingleNote s = single.GetComponent<SingleNote>();
                             s.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
 
                             data = s;
@@ -207,6 +229,8 @@ public class LoadPlayMusic : MonoBehaviour
                             data = tempLongData[intBuf];
                         }
                         //Noteの追加
+                        //最初は非アクティブ
+                        data.gameObject.SetActive(false);
                         tempLoadList[intBuf].Add(data);
                         //終点用にカウント数増加
                         countNote++;
@@ -215,6 +239,8 @@ public class LoadPlayMusic : MonoBehaviour
                 readEndFlag = true;
             }
         }
+
+        Instantiate(prefabNoteOwner);
     }
 
 

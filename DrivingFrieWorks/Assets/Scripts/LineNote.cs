@@ -25,14 +25,23 @@ public class LineNote : MonoBehaviour
     }
 
     //画面に出す判定
-    public void Distplay(float startTime){
+    public void UpdateDistplay(float startTime){
         float nowTime = Time.time-startTime;
-        //画面に出す
-        if (noteList[displayNoteNumber].GetApperTime() > nowTime)
+        bool endLoopFlag=false;
+        while (endLoopFlag == false)
         {
-            //noteList[displayNoteNumber].SetActive(true);
+            //画面に出す
+            if (noteList.Count < displayNoteNumber)
+            {
+                if (noteList[displayNoteNumber].apperTime > nowTime)
+                {
+                    //ノートのアクティブ化
+                    noteList[displayNoteNumber].gameObject.SetActive(true);
+                    displayNoteNumber++;
+                    continue;
+                }
+            }
+            endLoopFlag = true;
         }
-
-
     }
 }

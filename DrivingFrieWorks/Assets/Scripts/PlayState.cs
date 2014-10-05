@@ -12,12 +12,14 @@ public class PlayState : MonoBehaviour {
     public string selectName { get; set; }
     //public string musicFileName { get; set; }
     public double multspd { get; set; }//画面内に表示する泊数,mult=1で一泊
+
+    public GameObject loadMusic;//一時的に
     // Use this for initialization
     void Start()
     {
 
         multspd = 4;
-
+        Instantiate(loadMusic);
 
 
     }
