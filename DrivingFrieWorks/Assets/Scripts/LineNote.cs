@@ -25,30 +25,26 @@ public class LineNote : MonoBehaviour
     }
 
     //画面に出す判定
-    public void Distplay(float startTime){
+    public void UpdateDisplay(float startTime)
+    {
         float nowTime = Time.time-startTime;
+        bool endLoopFlag = false;
+
         //画面に出す
-        if (noteList[displayNoteNumber].GetApperTime() > nowTime)
+        while (endLoopFlag == false)
         {
-<<<<<<< HEAD
-            //画面に出す
-            if (noteList.Count < displayNoteNumber)
-            {
-
-                if (noteList[displayNoteNumber].apperTime> nowTime)
+                //画面に出す
+                if (noteList.Count > displayNoteNumber)
                 {
-                    //ノートのアクティブ化
-                    noteList[displayNoteNumber].gameObject.SetActive(true);
-                    displayNoteNumber++;
-                    continue;
+                    if (noteList[displayNoteNumber].apperTime < nowTime)
+                    {
+                        //ノートのアクティブ化
+                        noteList[displayNoteNumber].gameObject.SetActive(true);
+                        displayNoteNumber++;
+                        continue;
+                    }
                 }
+                endLoopFlag = true;
             }
-            endLoopFlag = true;
-=======
-            //noteList[displayNoteNumber].SetActive(true);
->>>>>>> parent of 8734fd1... GameObjectに変更前
         }
-
-
-    }
 }
