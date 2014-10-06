@@ -4,13 +4,13 @@ using System.Collections.Generic;
 //ライン毎のノートのリスト
 public class LineNote : MonoBehaviour
 {
-
-    List<Note> noteList;
+    //Noteのリスト
+    List<Note> noteList=new List<Note>();
     int displayNoteNumber=0;//何番目のノートまで出たか
 	// Use this for initialization
 	void Start ()
 	{
-        noteList = new List<Note>();
+        //noteList = new List<Note>();
         
 	}
 	
@@ -33,7 +33,8 @@ public class LineNote : MonoBehaviour
             //画面に出す
             if (noteList.Count < displayNoteNumber)
             {
-                if (noteList[displayNoteNumber].apperTime > nowTime)
+
+                if (noteList[displayNoteNumber].apperTime> nowTime)
                 {
                     //ノートのアクティブ化
                     noteList[displayNoteNumber].gameObject.SetActive(true);

@@ -13,7 +13,7 @@ public class NoteOwner : MonoBehaviour
     void Start()
     {
         //ノートデータの取得
-        allNoteList = GameObject.FindWithTag("LoadMusic").GetComponent<LoadPlayMusic>().GetAllNoteList();
+        allNoteList = GameObject.FindWithTag("LoadPlayMusic").GetComponent<LoadPlayMusic>().GetAllNoteList();
 
         startTime = Time.time;
         //StartCoroutine("noteDisplay");

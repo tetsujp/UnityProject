@@ -9,14 +9,21 @@ public class LoadPlayMusic : MonoBehaviour
 
     //ロードしたNoteを一時的に入れるリスト
     //リストの実態はまだ作られていない
+    //LineNoteのリスト
     LineNote[] tempLoadList;
-    double endTime;
+//    double endTime;
     
     //プレハブ
     public GameObject prefabLineNote;//Line
     public GameObject prefabSingleNote;//Single
     public GameObject prefabLongNote;//Long
     public GameObject prefabNoteOwner;
+
+    SingleNote singleN;
+    LongNote longN;
+    LongNote[] tempLongData;
+    Note data;
+    //int readCount = 0;
 
     // Use this for initialization
     void Start()
@@ -63,7 +70,7 @@ public class LoadPlayMusic : MonoBehaviour
                 playStateScript.selectName = loopBuf;
             }
             //Delay取得
-            if (loopBuf == "DELAY")
+            else if (loopBuf == "DELAY")
             {
                 loopBuf = reader.ReadLine();
                 judgeTime = Convert.ToDouble(loopBuf);
@@ -92,7 +99,8 @@ public class LoadPlayMusic : MonoBehaviour
                 //一時的なLongNote
                 //List<LongNote> tempLongData=new LongNote[Global.MAXLINE];
                 //実態は持っていない
-                LongNote[] tempLongData = new LongNote[Global.MAX_LINE];
+                //LongNote[] tempLongData = new LongNote[Global.MAX_LINE];
+                tempLongData = new LongNote[Global.MAX_LINE];
                
 
                 
@@ -103,139 +111,155 @@ public class LoadPlayMusic : MonoBehaviour
                 //InformationNote tempLongData[];
 
                 //初期の1泊設定
-                double hakuTime = (60 * Global.MILLI_SECONDS * 4 / (bpmTemp)) * syosetsuNum;
+                double hakuTime = (60 * 4 / (bpmTemp * syosetsuNum));
+                //表示時間
+                //multspdが4の場合1小節
+                double dispTime = hakuTime;
+                bool longStartFlag = false;
 
                 //1行ずつ読む
                 while ((buf = reader.ReadLine()) != null)
                 {
-
-                    bool longStartFlag = false;
                     int readCount = 0;
-
+                    //改行時飛ばし
+                    if (buf == "\n") continue;
                     //1文字読み込み
-                    //string str = buf[readCount].ToString();
-                    //char c_buf = buf[readCount];
-                    string c_buf = buf[readCount].ToString();
-                    readCount++;
-
-                    //次の泊へ
-                    if (c_buf == ",")
+                    while (readCount < buf.Length)
                     {
-                        judgeTime += hakuTime;
-                    }
+                        //int readCount = 0;
+                        //charでは取得できない?
+                        //char c_buf = buf[readCount];
+                        string c_buf = buf[readCount].ToString();
+                        readCount++;
 
-                    //Bpm変更開始
-                    else if (c_buf == "#")
-                    {
-                        string tBpm = String.Empty; ;
-                        //&が出るまでの数字
-                        while (buf[readCount] != '&')
+                        //次の泊へ
+                        if (c_buf == ",")
                         {
-                            tBpm += buf[readCount];
+                            judgeTime += hakuTime;
+                        }
+
+                        //Bpm変更開始
+                        else if (c_buf == "#")
+                        {
+                            string tBpm = String.Empty;
+                            //&が出るまでの数字
+                            while (buf[readCount] != '&')
+                            {
+                                tBpm += buf[readCount];
+                                readCount++;
+                            }
+                            //&の分
+                            readCount++;
+                            //BPM変更とhakutimeの修正
+                            //bpmTemp = Convert.ToDouble(tBpm);
+                            bpmTemp = double.Parse(tBpm);
+                            hakuTime = (60 * 4 / (bpmTemp * syosetsuNum));
+                            dispTime = hakuTime * syosetsuNum * 4;
+                        }
+
+                            //泊数変更
+                        else if (c_buf == "@")
+                        {
+                            string tSyosetsuNum = String.Empty; ;
+                            //&が出るまでの数字
+                            while (buf[readCount] != '&')
+                            {
+                                tSyosetsuNum += buf[readCount];
+                                readCount++;
+                            }
+                            //&の分
+                            readCount++;
+                            //１泊の時間変更
+                            //syosetsuNum = Convert.ToDouble(tSyosetsuNum);
+                            syosetsuNum = double.Parse(tSyosetsuNum);
+                            hakuTime = (60 * 4 / (bpmTemp * syosetsuNum));
+                        }
+
+                            //コメント
+                        else if (c_buf == "/")
+                        {
+                            while (buf[readCount] != '&')
+                            {
+                                readCount++;
+                            }
+                            //&の分
                             readCount++;
                         }
-                        //BPM変更とhakutimeの修正
-                        //bpmTemp = Convert.ToDouble(tBpm);
-                        bpmTemp = double.Parse(tBpm);
-                        hakuTime = (60 * Global.MILLI_SECONDS * 4 / (bpmTemp)) * syosetsuNum;
-                    }
 
-                        //泊数変更
-                    else if (c_buf == "@")
-                    {
-                        string tSyosetsuNum = String.Empty; ;
-                        //&が出るまでの数字
-                        while (buf[readCount] != '&')
+                            //終了時間
+                        else if (c_buf == "E")
                         {
-                            tSyosetsuNum += buf[readCount];
-                            readCount++;
+                            //endTime = judgeTime;
                         }
-                        //１泊の時間変更
-                        //syosetsuNum = Convert.ToDouble(tSyosetsuNum);
-                        syosetsuNum = double.Parse(tSyosetsuNum);
-                        hakuTime = (60 * Global.MILLI_SECONDS * 4 / (bpmTemp)) * syosetsuNum;
-                    }
-
-                        //コメント
-                    else if (c_buf == "/")
-                    {
-                        while (buf[readCount] != '&')
+                        //ロングノート開始
+                        //次の数字のノートをロングノートにする
+                        else if (c_buf == "!")
                         {
-                            readCount++;
-                        }
-                    }
+                            longStartFlag = true;
 
-                        //終了時間
-                    else if (c_buf == "E")
-                    {
-                        endTime = judgeTime;
-                    }
-                    //ロングノート開始
-                    //次の数字のノートをロングノートにする
-                    else if (c_buf == "!")
-                    {
-                        longStartFlag = true;
-
-                    }
-
-                        //数字の時ノート追加
-                    else
-                    {
-                        //charからintへ変換
-                        //int intBuf = Convert.ToInt32(c_buf);
-                        int intBuf = int.Parse(c_buf);
-                        //リストにデータを入れる
-                        Note data;
-
-                        //表示時間の設定
-                        //変更が必要？
-
-                        double apperTime = judgeTime - hakuTime * playStateScript.multspd;
-                        
-                        
-                        //ロングノートにする
-                        if (longStartFlag)
-                        {
-
-                            longLineFlag[intBuf] = true;
-                            //LongNote l = new LongNote();
-                            LongNote l = (LongNote)Instantiate(prefabLongNote);
-                            l.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
-                            tempLongData[intBuf] = l;
-
-                            longStartFlag = false;
-                            continue;
                         }
 
-                        //データが入る場合のみ下へ
-                        //データ格納
-
-                        //単ノートはこのまま入る
-                        if (longLineFlag[intBuf] == false)
-                        {
-                            //SingleNote s=new SingleNote();
-                            //SingleNote s= (SingleNote)Instantiate(prefabSingleNote);
-                            GameObject single = (GameObject)Instantiate(prefabSingleNote);
-                            SingleNote s = single.GetComponent<SingleNote>();
-                            s.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
-
-                            data = s;
-                        }
-
-                        //ロングノートは終点を適用
+                            //数字の時ノート追加
                         else
                         {
-                            tempLongData[intBuf].SetLongEndTime(judgeTime);
-                            data = tempLongData[intBuf];
+                            //charからintへ変換
+                            //int intBuf = Convert.ToInt32(c_buf);
+                            int intBuf = int.Parse(c_buf);
+                            //リストにデータを入れる
+                            //Note data;
+
+                            //表示時間の設定
+
+                            double apperTime = judgeTime - dispTime * playStateScript.multspd;
+
+
+                            //ロングノートにする
+                            if (longStartFlag)
+                            {
+
+                                longLineFlag[intBuf] = true;
+                                //LongNote l = new LongNote();
+
+                                longN = ((GameObject)Instantiate(prefabSingleNote)).GetComponent<LongNote>();
+                                //LongNote tempLong = l.GetComponent<LongNote>();
+                                longN.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
+                                //l.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
+                                tempLongData[intBuf] = longN;
+
+                                longStartFlag = false;
+                                continue;
+                            }
+
+                            //データが入る場合のみ下へ
+                            //データ格納
+
+                            //単ノートはこのまま入る
+                            if (longLineFlag[intBuf] == false)
+                            {
+                                //SingleNote s=new SingleNote();
+                                //SingleNote s= (SingleNote)Instantiate(prefabSingleNote);
+                                singleN = ((GameObject)Instantiate(prefabSingleNote)).GetComponent<SingleNote>();
+                                //s =single.GetComponent<SingleNote>();
+                                singleN.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
+                                data = singleN;
+                            }
+
+                            //ロングノートは終点を適用
+                            else
+                            {
+                                tempLongData[intBuf].SetLongEndTime(judgeTime);
+                                data = tempLongData[intBuf];
+                            }
+                            //Noteの追加
+                            //最初は非アクティブ
+                            data.gameObject.SetActive(false);
+                            tempLoadList[intBuf].Add(data);
+                            //終点用にカウント数増加
+                            countNote++;
                         }
-                        //Noteの追加
-                        //最初は非アクティブ
-                        data.gameObject.SetActive(false);
-                        tempLoadList[intBuf].Add(data);
-                        //終点用にカウント数増加
-                        countNote++;
                     }
                 }
+
                 readEndFlag = true;
             }
         }
