@@ -25,16 +25,17 @@ public class LineNote : MonoBehaviour
     }
 
     //画面に出す判定
-    public void UpdateDistplay(float startTime){
+    public void Distplay(float startTime){
         float nowTime = Time.time-startTime;
-        bool endLoopFlag=false;
-        while (endLoopFlag == false)
+        //画面に出す
+        if (noteList[displayNoteNumber].GetApperTime() > nowTime)
         {
+<<<<<<< HEAD
             //画面に出す
-            if (noteList.Count > displayNoteNumber)
+            if (noteList.Count < displayNoteNumber)
             {
 
-                if (noteList[displayNoteNumber].apperTime< nowTime)
+                if (noteList[displayNoteNumber].apperTime> nowTime)
                 {
                     //ノートのアクティブ化
                     noteList[displayNoteNumber].gameObject.SetActive(true);
@@ -43,6 +44,11 @@ public class LineNote : MonoBehaviour
                 }
             }
             endLoopFlag = true;
+=======
+            //noteList[displayNoteNumber].SetActive(true);
+>>>>>>> parent of 8734fd1... GameObjectに変更前
         }
+
+
     }
 }
