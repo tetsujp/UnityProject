@@ -19,10 +19,11 @@ public class LoadPlayMusic : MonoBehaviour
     public GameObject prefabLongNote;//Long
     public GameObject prefabNoteOwner;
 
-    SingleNote singleN;
-    LongNote longN;
-    LongNote[] tempLongData;
-    Note data;
+    //SingleNote singleN;
+    //LongNote longN;
+    //LongNote[] tempLongData;
+    //Note data;
+
     //int readCount = 0;
 
     // Use this for initialization
@@ -99,8 +100,8 @@ public class LoadPlayMusic : MonoBehaviour
                 //一時的なLongNote
                 //List<LongNote> tempLongData=new LongNote[Global.MAXLINE];
                 //実態は持っていない
-                //LongNote[] tempLongData = new LongNote[Global.MAX_LINE];
-                tempLongData = new LongNote[Global.MAX_LINE];
+                LongNote[] tempLongData = new LongNote[Global.MAX_LINE];
+                //tempLongData = new LongNote[Global.MAX_LINE];
                
 
                 
@@ -206,7 +207,7 @@ public class LoadPlayMusic : MonoBehaviour
                             //int intBuf = Convert.ToInt32(c_buf);
                             int intBuf = int.Parse(c_buf);
                             //リストにデータを入れる
-                            //Note data;
+                            Note data;
 
                             //表示時間の設定
 
@@ -220,7 +221,7 @@ public class LoadPlayMusic : MonoBehaviour
                                 longLineFlag[intBuf] = true;
                                 //LongNote l = new LongNote();
 
-                                longN = ((GameObject)Instantiate(prefabSingleNote)).GetComponent<LongNote>();
+                                LongNote longN = ((GameObject)Instantiate(prefabLongNote)).GetComponent<LongNote>();
                                 //LongNote tempLong = l.GetComponent<LongNote>();
                                 longN.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
                                 //l.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
@@ -238,7 +239,8 @@ public class LoadPlayMusic : MonoBehaviour
                             {
                                 //SingleNote s=new SingleNote();
                                 //SingleNote s= (SingleNote)Instantiate(prefabSingleNote);
-                                singleN = ((GameObject)Instantiate(prefabSingleNote)).GetComponent<SingleNote>();
+                                
+                                SingleNote singleN = ((GameObject)Instantiate(prefabSingleNote)).GetComponent<SingleNote>();
                                 //s =single.GetComponent<SingleNote>();
                                 singleN.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
                                 data = singleN;

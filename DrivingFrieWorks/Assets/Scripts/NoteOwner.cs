@@ -16,7 +16,7 @@ public class NoteOwner : MonoBehaviour
         allNoteList = GameObject.FindWithTag("LoadPlayMusic").GetComponent<LoadPlayMusic>().GetAllNoteList();
 
         startTime = Time.time;
-        //StartCoroutine("noteDisplay");
+        StartCoroutine("noteDisplay");
     }
 
     // Update is called once per frame

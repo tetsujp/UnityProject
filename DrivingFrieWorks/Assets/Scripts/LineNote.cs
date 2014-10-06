@@ -31,10 +31,10 @@ public class LineNote : MonoBehaviour
         while (endLoopFlag == false)
         {
             //画面に出す
-            if (noteList.Count < displayNoteNumber)
+            if (noteList.Count > displayNoteNumber)
             {
 
-                if (noteList[displayNoteNumber].apperTime> nowTime)
+                if (noteList[displayNoteNumber].apperTime< nowTime)
                 {
                     //ノートのアクティブ化
                     noteList[displayNoteNumber].gameObject.SetActive(true);
