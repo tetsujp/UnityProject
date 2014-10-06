@@ -159,6 +159,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da470b47fd0a66d45a235b19bd50b8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startPosition:
+  - {fileID: 100000, guid: 2974980d6a7cb2843802c1f6591f1572, type: 2}
+  - {fileID: 100000, guid: 779f9d166aa1dbb4d86e8f64844ab08b, type: 2}
+  - {fileID: 100000, guid: 209c0415e6ac74f4a9572f2855e9baf9, type: 2}
+  - {fileID: 100000, guid: f8fdf8a1102aae64aa665eb622f9755c, type: 2}
+  - {fileID: 100000, guid: 4a95e9e5245fb5a4d9663eda714118b3, type: 2}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1
