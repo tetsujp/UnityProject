@@ -9,7 +9,7 @@ public class Note : MonoBehaviour
     public double judgeTime{get;set;}//Just判定になる時間
     int line;
     public GameObject[] startPosition;
-
+    public double sumTime = 10;//speed*LifeTime
 
 
     //プレイステータス
@@ -22,6 +22,13 @@ public class Note : MonoBehaviour
         apperTime = a;
         line = l;
         transform.position = startPosition[line].transform.position;
+
+        //画面に表示されている時間
+        double inDisplayTime = judgeTime - apperTime;
+        //パーティクルの設定
+        ParticleSystem particle = gameObject.GetComponentInChildren<ParticleSystem>();
+        particle.startLifetime=(float)inDisplayTime;
+        particle.startSpeed = (float)sumTime / particle.startLifetime;
         displayState=noteDisplayState.none;
     }
 

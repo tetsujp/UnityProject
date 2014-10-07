@@ -140,7 +140,8 @@ public class LoadPlayMusic : MonoBehaviour
                                 //bpmTemp = Convert.ToDouble(tBpm);
                                 bpmTemp = double.Parse(tBpm);
                                 hakuTime = (60 * 4 / (bpmTemp * syosetsuNum));
-                                dispTime = hakuTime * syosetsuNum * 4;
+                                //4分の時間
+                                dispTime = hakuTime*4 / syosetsuNum ;
                             }
                         }
 
