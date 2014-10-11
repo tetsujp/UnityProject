@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public enum noteDisplayState { none,now,end };
 public class Note : MonoBehaviour
 {
     double bpm;
@@ -10,10 +8,10 @@ public class Note : MonoBehaviour
     int line;
     public GameObject[] startPosition;
     public double sumTime = 10;//speed*LifeTime
+    
+    public GameObject prefabFlower;
 
 
-    //プレイステータス
-    public noteDisplayState displayState{get;set;}
 
     public virtual void Initialize(double j, double b, double a, int l)
     {
@@ -29,7 +27,6 @@ public class Note : MonoBehaviour
         ParticleSystem particle = gameObject.GetComponentInChildren<ParticleSystem>();
         particle.startLifetime=(float)inDisplayTime;
         particle.startSpeed = (float)sumTime / particle.startLifetime;
-        displayState=noteDisplayState.none;
     }
 
 
@@ -43,6 +40,14 @@ public class Note : MonoBehaviour
     void Update()
     {
 
+    }
+    public void Hit(e_judgeKind kind)
+    {
+        CreateFlower(kind);
+    }
+    void CreateFlower(e_judgeKind kind)
+    {
+        Instantiate(prefabFlower,transform.position,Quaternion.identity);
     }
 
 }

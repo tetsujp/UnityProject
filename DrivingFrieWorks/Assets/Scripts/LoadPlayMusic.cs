@@ -32,7 +32,8 @@ public class LoadPlayMusic : MonoBehaviour
 
         //共通情報取得
         PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
-        string filePath = "Assets/music/" + playStateScript.selectName + difficulty.GetName(Type.GetType("difficulty"), playStateScript.diff) + ".txt";
+        //string filePath = "Assets/Resources/Music/" + playStateScript.selectName + difficulty.GetName(Type.GetType("difficulty"), playStateScript.diff) + ".txt";
+        string filePath = string.Format("{0}/Music/easy.txt", Application.dataPath/*, playStateScript.selectName*/);
         FileStream f = new FileStream(filePath, FileMode.Open, FileAccess.Read);
         StreamReader reader = new StreamReader(f);
         //読み込み失敗
@@ -49,6 +50,7 @@ public class LoadPlayMusic : MonoBehaviour
         {
             /*tempLoadList[i] = (LineNote)Instantiate(prefabLineNote);*/
             GameObject obj = (GameObject)Instantiate(prefabLineNote);
+            obj.GetComponent<LineNote>().lineName = (e_lineName)i;
             tempLoadList[i] = obj.GetComponent<LineNote>();
         }
 
@@ -245,6 +247,7 @@ public class LoadPlayMusic : MonoBehaviour
                 readEndFlag = true;
             }
         }
+        LoadSelectMusic();
         Instantiate(prefabNoteOwner);
     }
 
@@ -254,6 +257,31 @@ public class LoadPlayMusic : MonoBehaviour
     {
 
 
+    }
+    // member
+    private WavFileInfo m_WavInfo = new WavFileInfo();
+    void LoadSelectMusic()
+    {
+        AudioClipMaker m_ClipMaker = GameObject.FindWithTag("AudioClipMaker").GetComponent<AudioClipMaker>();
+        GameObject m_AudioPlayer = GameObject.FindWithTag("Music");
+        PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
+        string path = string.Format("{0}/Music/Call of Fall.wav", Application.dataPath/*, playStateScript.selectName*/);
+        byte[] buf = File.ReadAllBytes(path);
+        // analyze wav file
+        m_WavInfo.Analyze(buf);
+        // create audio clip
+        AudioSource source = m_AudioPlayer.GetComponent<AudioSource>();
+        source.clip = m_ClipMaker.Create(
+        "making_clip",
+        buf,
+        m_WavInfo.TrueWavBufIdx,
+        m_WavInfo.BitPerSample,
+        m_WavInfo.TrueSamples,
+        m_WavInfo.Channels,
+        m_WavInfo.Frequency,
+        false,
+        false
+        );
     }
 
     public LineNote[] GetAllNoteList() { return tempLoadList; }
