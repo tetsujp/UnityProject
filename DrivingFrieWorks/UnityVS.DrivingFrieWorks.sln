@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.DrivingFrieWorks.CSharp", "UnityVS.DrivingFrieWorks.CSharp.csproj", "{16F83D7D-FA76-6353-6CC9-219A4B069F58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.DrivingFrieWorks.CSharp.Editor", "UnityVS.DrivingFrieWorks.CSharp.Editor.csproj", "{A5854132-1741-CD81-F621-4EA2C387C4DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{16F83D7D-FA76-6353-6CC9-219A4B069F58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16F83D7D-FA76-6353-6CC9-219A4B069F58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16F83D7D-FA76-6353-6CC9-219A4B069F58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5854132-1741-CD81-F621-4EA2C387C4DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5854132-1741-CD81-F621-4EA2C387C4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5854132-1741-CD81-F621-4EA2C387C4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5854132-1741-CD81-F621-4EA2C387C4DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,6 +6,7 @@ TagManager:
   - LoadPlayMusic
   - Music
   - AudioClipMaker
+  - SelectCanvas
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

@@ -106,7 +106,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: 4a95e9e5245fb5a4d9663eda714118b3, type: 2}
   - {fileID: 100000, guid: f8fdf8a1102aae64aa665eb622f9755c, type: 2}
   sumTime: 10
-  prefabFlower: {fileID: 100002, guid: 530b722ec8a42324c8653e1d7e33c162, type: 2}
+  prefabFlower: {fileID: 100006, guid: efc2794bc939712438b5ddae6fcde603, type: 2}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

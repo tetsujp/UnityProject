@@ -32,8 +32,7 @@ public class LoadPlayMusic : MonoBehaviour
 
         //共通情報取得
         PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
-        //string filePath = "Assets/Resources/Music/" + playStateScript.selectName + difficulty.GetName(Type.GetType("difficulty"), playStateScript.diff) + ".txt";
-        string filePath = string.Format("{0}/Music/easy.txt", Application.dataPath/*, playStateScript.selectName*/);
+        string filePath = string.Format("{0}/Music/Call of Fall/easy.txt", Application.dataPath/*, playStateScript.selectName*/);
         FileStream f = new FileStream(filePath, FileMode.Open, FileAccess.Read);
         StreamReader reader = new StreamReader(f);
         //読み込み失敗
@@ -265,7 +264,7 @@ public class LoadPlayMusic : MonoBehaviour
         AudioClipMaker m_ClipMaker = GameObject.FindWithTag("AudioClipMaker").GetComponent<AudioClipMaker>();
         GameObject m_AudioPlayer = GameObject.FindWithTag("Music");
         PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
-        string path = string.Format("{0}/Music/Call of Fall.wav", Application.dataPath/*, playStateScript.selectName*/);
+        string path = string.Format("{0}/Music/Call of Fall/Call of Fall.wav", Application.dataPath/*, playStateScript.selectName*/);
         byte[] buf = File.ReadAllBytes(path);
         // analyze wav file
         m_WavInfo.Analyze(buf);
