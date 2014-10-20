@@ -5,7 +5,7 @@ using System.Collections;
 public class SelectBar : MonoBehaviour {
 
     public float moveToPosition = 100;
-    string name;
+    public string name{get;set;}
     string bpmRange;
     string composer;
 	// Use this for initialization
@@ -26,12 +26,18 @@ public class SelectBar : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+	}
+    public void Move()
+    {
         if (Input.GetButtonDown("Up"))
         {
-            transform.position += new Vector3(0, moveToPosition, 0);
+            transform.position = new Vector3(transform.position.x, transform.position.y + moveToPosition, transform.position.z);
         }
-        else if(Input.GetButtonDown("Down")){
-            transform.position += new Vector3(0, -moveToPosition, 0);
+        else if (Input.GetButtonDown("Down"))
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y -moveToPosition, transform.position.z);
         }
-	}
+    }
+    //選択中のみ左に出す
+
 }

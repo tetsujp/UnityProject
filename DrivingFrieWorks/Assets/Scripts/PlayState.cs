@@ -13,13 +13,10 @@ public class PlayState : MonoBehaviour {
     //public string musicFileName { get; set; }
     public double multspd { get; set; }//画面内に表示する泊数,mult=1で一泊
 
-    public GameObject loadPlayMusic;
     // Use this for initialization
     void Start()
     {
-
         multspd = 4;
-        Instantiate(loadPlayMusic);
     }
 
     // Update is called once per frame

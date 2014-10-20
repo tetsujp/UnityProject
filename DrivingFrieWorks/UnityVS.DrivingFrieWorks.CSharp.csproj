@@ -58,7 +58,6 @@
     <Compile Include="Assets\Scripts\Flower.cs" />
     <Compile Include="Assets\Scripts\Global.cs" />
     <Compile Include="Assets\Scripts\LineNote.cs" />
-    <Compile Include="Assets\Scripts\LoadAllMusic.cs" />
     <Compile Include="Assets\Scripts\LoadPlayMusic.cs" />
     <Compile Include="Assets\Scripts\LongNote.cs" />
     <Compile Include="Assets\Scripts\MainCamera.cs" />
@@ -66,6 +65,7 @@
     <Compile Include="Assets\Scripts\NoteOwner.cs" />
     <Compile Include="Assets\Scripts\PlayState.cs" />
     <Compile Include="Assets\Scripts\SelectBar.cs" />
+    <Compile Include="Assets\Scripts\SelectScene.cs" />
     <Compile Include="Assets\Scripts\SingleNote.cs" />
     <Compile Include="Assets\Scripts\WavFileInfo.cs" />
     <None Include="Assets\Music\3rd cosmic velocity\easy.txt" />

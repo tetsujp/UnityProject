@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+using System.Collections.Generic;
 
 //曲データの全ロード
-public class LoadAllMusic : MonoBehaviour {
+public class SelectScene : MonoBehaviour
+{
 
 	// Use this for initialization
     public GameObject selectBar;
+    public GameObject loadPlayMusic;
+    PlayState playState;
+    List<SelectBar> selectBarList = new List<SelectBar>();
+    int playCounter = 0;
+    int MaxMusicNumber=-1;
 	void Start () {
         //自動でフォルダから曲情報を読み込み
 
@@ -64,13 +71,50 @@ public class LoadAllMusic : MonoBehaviour {
                 }
             }
             var select = (GameObject)Instantiate(selectBar);
-            select.GetComponent<SelectBar>().Initialize(i, name, bpm, composer);
+            var script=select.GetComponent<SelectBar>();
+            script.Initialize(i, name, bpm, composer);
+            selectBarList.Add(script);
+            MaxMusicNumber++;
         }
-
+        playState = GameObject.FindGameObjectWithTag("PlayState").GetComponent<PlayState>();
+        playState.selectName = selectBarList[0].name;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        //SelectBarの移動
+        if (Input.GetButtonDown("Up")&&playCounter<MaxMusicNumber)
+        {
+            playCounter++;
+            foreach (var select in selectBarList)
+            {
+                select.Move();
+            }
+
+            playState.selectName = selectBarList[playCounter].name;
+        }
+        else if(Input.GetButtonDown("Down")&&playCounter>0){
+            playCounter--;
+            foreach (var select in selectBarList)
+            {
+                select.Move();
+            }
+
+            playState.selectName = selectBarList[playCounter].name;
+        }
+            //難易度変更
+        else if (Input.GetButtonDown("Left")&&playState.diff>difficulty.easy)
+        {
+            playState.diff=playState.diff++;
+        }
+        else if(Input.GetButtonDown("Right")&&playState.diff<difficulty.extreme)
+        {
+            playState.diff = playState.diff--;
+        }
+        //曲の決定
+        else if (Input.GetButtonDown("Decide"))
+        {
+            Instantiate(loadPlayMusic);
+        }
 	}
 }
