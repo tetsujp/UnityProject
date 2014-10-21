@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Note.cs" />
     <Compile Include="Assets\Scripts\NoteOwner.cs" />
     <Compile Include="Assets\Scripts\PlayState.cs" />
+    <Compile Include="Assets\Scripts\ResultScene.cs" />
     <Compile Include="Assets\Scripts\SelectBar.cs" />
     <Compile Include="Assets\Scripts\SelectScene.cs" />
     <Compile Include="Assets\Scripts\SingleNote.cs" />

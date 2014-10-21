@@ -12,7 +12,7 @@ public class LoadPlayMusic : MonoBehaviour
     //LineNoteのリスト
     LineNote[] tempLoadList;
 
-    double endTime;
+    public double endTime{get;set;}
     double startEditTime = 0;
     public float delayEmptyTime { get; set; }
 

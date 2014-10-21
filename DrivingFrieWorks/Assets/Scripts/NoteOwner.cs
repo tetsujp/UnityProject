@@ -8,13 +8,18 @@ public class NoteOwner : MonoBehaviour
 
     LineNote[] allNoteList;
     float startTime;
+    double endTime;
     AudioSource playMusic;
+
+    public GameObject prefabResultScene;
     // Use this for initialization
     void Start()
     {
         //ノートデータの取得
-        allNoteList = GameObject.FindWithTag("LoadPlayMusic").GetComponent<LoadPlayMusic>().GetAllNoteList();
-        float delayTime = GameObject.FindWithTag("LoadPlayMusic").GetComponent<LoadPlayMusic>().delayEmptyTime;
+        LoadPlayMusic playMusicScript = GameObject.FindWithTag("LoadPlayMusic").GetComponent<LoadPlayMusic>();
+        allNoteList = playMusicScript.GetAllNoteList();
+        float delayTime = playMusicScript.delayEmptyTime;
+        endTime = playMusicScript.endTime;
         //曲の再生
         playMusic = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
         //曲の先頭に空白をつける
@@ -29,6 +34,7 @@ public class NoteOwner : MonoBehaviour
     void Update()
     {
         CheckHit();
+        CheckEnd();
     }
 
     //画面に内に出す判定
@@ -67,5 +73,13 @@ public class NoteOwner : MonoBehaviour
             {
                 list.CheckHit(startTime);
             }
+    }
+    void CheckEnd()
+    {
+        if (Time.time - startTime > endTime)
+        {
+            Instantiate(prefabResultScene);
+            Destroy(this);
+        }
     }
 }
