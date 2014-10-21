@@ -9,15 +9,15 @@ public class NoteOwner : MonoBehaviour
     LineNote[] allNoteList;
     float startTime;
     AudioSource playMusic;
-    public float delayTime=0;//曲の再生開始を遅らせる
     // Use this for initialization
     void Start()
     {
         //ノートデータの取得
         allNoteList = GameObject.FindWithTag("LoadPlayMusic").GetComponent<LoadPlayMusic>().GetAllNoteList();
-
+        float delayTime = GameObject.FindWithTag("LoadPlayMusic").GetComponent<LoadPlayMusic>().delayEmptyTime;
         //曲の再生
         playMusic = GameObject.FindWithTag("Music").GetComponent<AudioSource>();
+        //曲の先頭に空白をつける
         playMusic.PlayDelayed(delayTime);
 
         startTime = Time.time;

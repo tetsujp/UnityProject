@@ -782,7 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectBar: {fileID: 100000, guid: 55d6ad66cca4b24478df177ee3c08af0, type: 2}
-  loadPlayMusic: {fileID: 0}
+  loadPlayMusic: {fileID: 100000, guid: 4d199fdabf7e2004da9f8cfe5dbd312e, type: 2}
 --- !u!114 &1758786999
 MonoBehaviour:
   m_ObjectHideFlags: 0

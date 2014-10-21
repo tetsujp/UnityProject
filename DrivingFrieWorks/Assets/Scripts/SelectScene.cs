@@ -115,6 +115,7 @@ public class SelectScene : MonoBehaviour
         else if (Input.GetButtonDown("Decide"))
         {
             Instantiate(loadPlayMusic);
+            gameObject.SetActive(false);
         }
 	}
 }

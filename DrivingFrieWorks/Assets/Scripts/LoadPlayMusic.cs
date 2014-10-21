@@ -13,6 +13,8 @@ public class LoadPlayMusic : MonoBehaviour
     LineNote[] tempLoadList;
 
     double endTime;
+    double startEditTime = 0;
+    public float delayEmptyTime { get; set; }
 
     //プレハブ
     public GameObject prefabLineNote;//Line
@@ -29,10 +31,11 @@ public class LoadPlayMusic : MonoBehaviour
         double bpmTemp = 0;
         double judgeTime = 0;
         bool readEndFlag = false;
+        bool startSetFlag = false;
 
         //共通情報取得
         PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
-        string filePath = string.Format("{0}/Music/Call of Fall/easy.txt", Application.dataPath/*, playStateScript.selectName*/);
+        string filePath = string.Format("{0}/Music/{1}/{2}.txt", Application.dataPath, playStateScript.selectName,playStateScript.diff.ToString());
         FileStream f = new FileStream(filePath, FileMode.Open, FileAccess.Read);
         StreamReader reader = new StreamReader(f);
         //読み込み失敗
@@ -68,7 +71,7 @@ public class LoadPlayMusic : MonoBehaviour
             else if (loopBuf == "DELAY")
             {
                 loopBuf = reader.ReadLine();
-                judgeTime = double.Parse(loopBuf);
+                delayEmptyTime = float.Parse(loopBuf);
             }
             //BPM取得
             else if (loopBuf == "STARTBPM")
@@ -102,7 +105,6 @@ public class LoadPlayMusic : MonoBehaviour
                 //multspdが4の場合1小節
                 double dispTime = hakuTime;
                 bool longStartFlag = false;
-
                 //1行ずつ読む
                 while ((buf = reader.ReadLine()) != null)
                 {
@@ -122,8 +124,12 @@ public class LoadPlayMusic : MonoBehaviour
                             judgeTime += hakuTime;
                         }
 
-
-
+                            //スタート位置の変更
+                        else if(c_buf=="S"){
+                            startEditTime = judgeTime;
+                            judgeTime = 0;
+                            startSetFlag = true;
+                        }
                     //Bpm変更開始
                         else if (c_buf == "#")
                         {
@@ -194,6 +200,9 @@ public class LoadPlayMusic : MonoBehaviour
                             //数字の時ノート追加
                         else
                         {
+                            //startEditTimeより前
+                            if (startSetFlag == false) continue;
+
                             int intBuf = int.Parse(c_buf);
                             Note data;
 
@@ -264,7 +273,7 @@ public class LoadPlayMusic : MonoBehaviour
         AudioClipMaker m_ClipMaker = GameObject.FindWithTag("AudioClipMaker").GetComponent<AudioClipMaker>();
         GameObject m_AudioPlayer = GameObject.FindWithTag("Music");
         PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
-        string path = string.Format("{0}/Music/Call of Fall/Call of Fall.wav", Application.dataPath/*, playStateScript.selectName*/);
+        string path = string.Format("{0}/Music/{1}/{1}.wav", Application.dataPath, playStateScript.selectName);
         byte[] buf = File.ReadAllBytes(path);
         // analyze wav file
         m_WavInfo.Analyze(buf);
@@ -281,6 +290,7 @@ public class LoadPlayMusic : MonoBehaviour
         false,
         false
         );
+        source.time = (float)startEditTime;
     }
 
     public LineNote[] GetAllNoteList() { return tempLoadList; }
