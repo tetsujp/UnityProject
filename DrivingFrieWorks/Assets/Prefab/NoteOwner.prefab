@@ -39,6 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca5e2c385397c4b43ae943ed87b85418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabResultScene: {fileID: 100018, guid: f034a16eb62c95242bc4c4647b19211c, type: 2}
   displayInterval: .00999999978
 --- !u!1001 &100100000
 Prefab:
