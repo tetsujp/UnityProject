@@ -1,0 +1,86 @@
+Unity備忘録
+
+一つのファイル内でエラーが発生しているときは他のファイルが正しくても認識されない
+例
+スクリプトAがエラーを出している際
+オブジェクトにスクリプトBを貼り付け→Cant add Scripts
+ファイルが見つからない、クラス名が違うと言われる
+VCでもソリューションエクスプローラーにファイルが表示されなくなる
+
+他のスクリプトからクラスを取得する際はMonoBehaviourが継承しているもののみ見れる
+A.cs
+class A{
+
+}
+B.cs
+class B{
+ A a;
+}
+上記はエラー
+A.cs
+class A :MonoBehaviour{}
+なら可
+
+Unityではコンストラクタ
+
+A()を使うことが非推奨
+MonoBehaviourを継承したクラスでコンストラクタを使ってはいけないわけ
+
+これはC# Overviewに記載されていますが
+UnityはEditモードに入ると自動的にコンストラクタを呼び出すそうです。
+これはスクリプトがコンパイルされる直後に発生するため
+気づかれないうちに呼び出されエラーを発生させたり
+プレハブや無効なゲームオブジェクトでも呼び出されてしまうそうです。
+さらにシングルトンパターンでコンストラクタを使用すると特定しづらい
+ヌルポが発生することがあります。
+
+なのでMonoBehaviourを継承したクラスはコンストラクタを使用しないようにし
+Awake もしくはStartを使ってください
+
+
+スクリプトをつけたオブジェクトについて
+Hogeというオブジェクトに
+class Hoge:MonoBehaviour{
+void Hogehoge(){}
+}
+のスクリプトをつけた時
+生成とHogehogeを使うときは
+GameObject obj=(GameObject)Instantiate(prefab);
+Hoge h=obj.GetComponet<Hoge>();
+h.Hogehoge();
+と、一度GameObjectを挟む
+以下は行かない
+Hoge h=(Hoge)Instantiate(prefab)
+h.hogehoge
+理由
+Instantiateで生成するのはGameObjectであり、スクリプトはそれにComponentととして存在している
+オブジェクトに付けられたComponentを利用するためまずはGameObjectを作る必要がある
+以下でも可能
+Hoge h=((GameObject)Instantiate(prefab)).GetComponent<Hoge>();
+h.Hogehoge();
+
+List<Hoge> hogeList
+ではHogeのスクリプトを格納している
+スクリプトから自身を指す場合は
+this.gameObjectまたはgameObjectと書く
+
+デバッグ→VisualStudioで編集→Unityをアクティブにして更新
+としないとUnityがコードの変化を認識できず固まる
+すなわち
+デバッグ→VisualStudioで編集→VisualStudioでUnityにAttach
+
+
+C#では配列で定数constが使えない
+readonlyを使う
+readonly float[] time={0f,1f,2f}
+ただしreadonlyはコンストラクタでのみ変更が可能になってしまう
+
+nGUIをデスクトップへダウンロード→インポートできず
+http://raharu0425.hatenablog.com/entry/20130125/1359086545
+参考に
+[Camera]という名のスクリプトを作成していたために名前が衝突していた
+
+曲の途中から再生
+AudioClip　source.time=で変更可能
+参考
+http://icoc-dev.hatenablog.com/
