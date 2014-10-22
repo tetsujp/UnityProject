@@ -11,7 +11,6 @@ public class NoteOwner : MonoBehaviour
     double endTime;
     AudioSource playMusic;
 
-    public GameObject prefabResultScene;
     // Use this for initialization
     void Start()
     {
@@ -78,7 +77,7 @@ public class NoteOwner : MonoBehaviour
     {
         if (Time.time - startTime > endTime)
         {
-            Instantiate(prefabResultScene);
+            //Instantiate(prefabResultScene);
             Destroy(this);
         }
     }

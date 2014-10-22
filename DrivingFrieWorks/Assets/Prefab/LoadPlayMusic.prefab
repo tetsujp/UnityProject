@@ -36,14 +36,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2bfdac51013f104880de89088c32ef1, type: 3}
+  m_Script: {fileID: 11500000, guid: 9753543bb6f3fcd4fa90ab24ad99bfb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabLineNote: {fileID: 100000, guid: 01563a7c50ad9dd40a7ec13ffc4905a8, type: 2}
-  prefabSingleNote: {fileID: 100004, guid: 38e840b1374c4ce4abd34a8f7592d189, type: 2}
-  prefabLongNote: {fileID: 100014, guid: 335433929450c294f8dade5b5bcd41c5, type: 2}
-  prefabNoteOwner: {fileID: 100000, guid: 37ce41b824fffe44b91eb5e76cd7ab05, type: 2}
-  m_AudioPlayer: {fileID: 0}
+  prefabLineNote: {fileID: 100000, guid: 3c74fe9ea1dde03478b242c18020fcd1, type: 2}
+  prefabSingleNote: {fileID: 100004, guid: 19ab34a8fe36c0f4da39f894087eba29, type: 2}
+  prefabLongNote: {fileID: 100014, guid: b6fab26a24a37d645b89a8c3a7956574, type: 2}
+  prefabNoteOwner: {fileID: 100000, guid: d4a9c9410bdf51943aecb789ed1adf55, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

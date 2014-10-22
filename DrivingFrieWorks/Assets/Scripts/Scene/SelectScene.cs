@@ -4,17 +4,19 @@ using System.IO;
 using System.Collections.Generic;
 
 //曲データの全ロード
-public class SelectScene : MonoBehaviour
+public class SelectScene :  BasicScene
 {
 
 	// Use this for initialization
     public GameObject selectBar;
-    public GameObject loadPlayMusic;
+    //public GameObject loadPlayMusic;
     PlayState playState;
     List<SelectBar> selectBarList = new List<SelectBar>();
     int playCounter = 0;
     int MaxMusicNumber=-1;
-	void Start () {
+
+    void Start()
+    {
         //自動でフォルダから曲情報を読み込み
 
 
@@ -78,8 +80,24 @@ public class SelectScene : MonoBehaviour
         }
         playState = GameObject.FindGameObjectWithTag("PlayState").GetComponent<PlayState>();
         playState.selectName = selectBarList[0].name;
+        SceneFinalize();
 	}
-	
+    public override void Initialize()
+    {
+        foreach (var l in selectBarList)
+        {
+            //曲選択
+            l.gameObject.SetActive(true);
+        }
+    }
+    public override void SceneFinalize()
+    {
+        foreach (var l in selectBarList)
+        {
+            //選択の停止
+            l.gameObject.SetActive(false);
+        }
+    }
 	// Update is called once per frame
 	void Update () {
         //SelectBarの移動
@@ -114,7 +132,9 @@ public class SelectScene : MonoBehaviour
         //曲の決定
         else if (Input.GetButtonDown("Decide"))
         {
-            Instantiate(loadPlayMusic);
+            //Instantiate(loadPlayMusic);
+            GameObject.FindWithTag("SceneManager").GetComponent<SceneManager>().ChangeScene(sceneName.Main);
+            SceneFinalize();
             gameObject.SetActive(false);
         }
 	}

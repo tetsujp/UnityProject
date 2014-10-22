@@ -64,9 +64,13 @@
     <Compile Include="Assets\Scripts\Note.cs" />
     <Compile Include="Assets\Scripts\NoteOwner.cs" />
     <Compile Include="Assets\Scripts\PlayState.cs" />
-    <Compile Include="Assets\Scripts\ResultScene.cs" />
+    <Compile Include="Assets\Scripts\Scene\BasicScene.cs" />
+    <Compile Include="Assets\Scripts\Scene\MainScene.cs" />
+    <Compile Include="Assets\Scripts\Scene\ResultScene.cs" />
+    <Compile Include="Assets\Scripts\Scene\SceneManager.cs" />
+    <Compile Include="Assets\Scripts\Scene\SelectScene.cs" />
+    <Compile Include="Assets\Scripts\Scene\TitleScene.cs" />
     <Compile Include="Assets\Scripts\SelectBar.cs" />
-    <Compile Include="Assets\Scripts\SelectScene.cs" />
     <Compile Include="Assets\Scripts\SingleNote.cs" />
     <Compile Include="Assets\Scripts\WavFileInfo.cs" />
     <None Include="Assets\Music\3rd cosmic velocity\easy.txt" />

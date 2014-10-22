@@ -20,7 +20,6 @@ public class LoadPlayMusic : MonoBehaviour
     public GameObject prefabLineNote;//Line
     public GameObject prefabSingleNote;//Single
     public GameObject prefabLongNote;//Long
-    public GameObject prefabNoteOwner;
 
 
     // Use this for initialization
@@ -256,7 +255,6 @@ public class LoadPlayMusic : MonoBehaviour
             }
         }
         LoadSelectMusic();
-        Instantiate(prefabNoteOwner);
     }
 
 
