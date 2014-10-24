@@ -4,7 +4,6 @@ using System.Collections;
 public class MainScene : BasicScene
 {
     //曲データ
-    public GameObject loadPlayMusic;
 
     //ノートデータ
     public GameObject prefabNoteOwner;
@@ -14,10 +13,7 @@ public class MainScene : BasicScene
 	}
     override public void Initialize()
     {
-        GameObject play=(GameObject)Instantiate(loadPlayMusic);
         noteOwner=(GameObject)Instantiate(prefabNoteOwner);
-
-        Destroy(play);
     }
     override public void SceneFinalize()
     {
@@ -27,6 +23,12 @@ public class MainScene : BasicScene
 
 	// Update is called once per frame
 	void Update () {
-	
+
+        //曲の終了
+        if (noteOwner.GetComponent<NoteOwner>().IsEnd())
+        {
+            ChangeScene(sceneName.Result);
+        }
+
 	}
 }

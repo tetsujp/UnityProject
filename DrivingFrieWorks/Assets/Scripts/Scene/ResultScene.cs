@@ -22,9 +22,8 @@ public class ResultScene : BasicScene
         //シーン切り替え
         if (Input.GetButtonDown("Decide"))
         {
-            GameObject.FindWithTag("SceneManager").GetComponent<SceneManager>().ChangeScene(sceneName.Select);
-            SceneFinalize();
-            gameObject.SetActive(false);
+
+            ChangeScene(sceneName.Select);
         }
 	}
 }

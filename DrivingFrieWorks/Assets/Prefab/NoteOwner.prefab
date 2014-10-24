@@ -39,7 +39,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8934e688879d4954297384b00a19310d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabResultScene: {fileID: 100018, guid: 141b76a7ec66cc24094d8cea36fd7bb1, type: 2}
+  prefabLoadPlayMusic: {fileID: 100000, guid: dceda99f9581e20419c3a8828acb7dfa, type: 2}
   displayInterval: .00999999978
 --- !u!1001 &100100000
 Prefab:

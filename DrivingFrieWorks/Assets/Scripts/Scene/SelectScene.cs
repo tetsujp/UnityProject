@@ -79,7 +79,7 @@ public class SelectScene :  BasicScene
             MaxMusicNumber++;
         }
         playState = GameObject.FindGameObjectWithTag("PlayState").GetComponent<PlayState>();
-        playState.selectName = selectBarList[0].name;
+        playState.selectName = selectBarList[0].musicName;
         SceneFinalize();
 	}
     public override void Initialize()
@@ -109,7 +109,7 @@ public class SelectScene :  BasicScene
                 select.Move();
             }
 
-            playState.selectName = selectBarList[playCounter].name;
+            playState.selectName = selectBarList[playCounter].musicName;
         }
         else if(Input.GetButtonDown("Down")&&playCounter>0){
             playCounter--;
@@ -118,7 +118,7 @@ public class SelectScene :  BasicScene
                 select.Move();
             }
 
-            playState.selectName = selectBarList[playCounter].name;
+            playState.selectName = selectBarList[playCounter].musicName;
         }
             //難易度変更
         else if (Input.GetButtonDown("Left")&&playState.diff>difficulty.easy)
@@ -133,9 +133,8 @@ public class SelectScene :  BasicScene
         else if (Input.GetButtonDown("Decide"))
         {
             //Instantiate(loadPlayMusic);
-            GameObject.FindWithTag("SceneManager").GetComponent<SceneManager>().ChangeScene(sceneName.Main);
-            SceneFinalize();
-            gameObject.SetActive(false);
+
+            ChangeScene(sceneName.Main);
         }
 	}
 }

@@ -84,3 +84,7 @@ http://raharu0425.hatenablog.com/entry/20130125/1359086545
 AudioClip　source.time=で変更可能
 参考
 http://icoc-dev.hatenablog.com/
+
+githubによる同期でMissingになる
+解決策
+ignoreには.metaは含めない

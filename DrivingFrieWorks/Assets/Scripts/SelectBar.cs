@@ -5,7 +5,7 @@ using System.Collections;
 public class SelectBar : MonoBehaviour {
 
     public float moveToPosition = 100;
-    public string name{get;set;}
+    public string musicName{get;set;}
     string bpmRange;
     string composer;
 	// Use this for initialization
@@ -17,9 +17,9 @@ public class SelectBar : MonoBehaviour {
         gameObject.transform.parent = GameObject.FindWithTag("SelectCanvas").transform;
         transform.localPosition = new Vector3(0, 0, 0);
         transform.position+=new Vector3(0,-moveToPosition*count,0);
-        name = n;
+        musicName = n;
         //textへの適応
-        transform.GetComponentInChildren<Text>().text = name;
+        transform.GetComponentInChildren<Text>().text = musicName;
         bpmRange = bpm;
         composer = com;
     }

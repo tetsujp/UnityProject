@@ -24,9 +24,8 @@ public class TitleScene :  BasicScene
         if (Input.GetButtonDown("Decide"))
         {
             //曲選択画面へ
-            GameObject.FindWithTag("SceneManager").GetComponent<SceneManager>().ChangeScene(sceneName.Select);
-            SceneFinalize();
-            gameObject.SetActive(false);
+
+            ChangeScene(sceneName.Select);
         }
 	}
 }

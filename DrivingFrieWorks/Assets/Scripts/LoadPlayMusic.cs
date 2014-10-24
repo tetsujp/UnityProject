@@ -23,7 +23,7 @@ public class LoadPlayMusic : MonoBehaviour
 
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         int countNote = 0;
 
@@ -64,7 +64,7 @@ public class LoadPlayMusic : MonoBehaviour
             if (loopBuf == "FILENAME")
             {
                 loopBuf = reader.ReadLine();
-                playStateScript.selectName = loopBuf;
+                //playStateScript.selectName = loopBuf;
             }
             //Delay取得
             else if (loopBuf == "DELAY")
@@ -277,6 +277,8 @@ public class LoadPlayMusic : MonoBehaviour
         m_WavInfo.Analyze(buf);
         // create audio clip
         AudioSource source = m_AudioPlayer.GetComponent<AudioSource>();
+
+        //再利用を可能にする
         source.clip = m_ClipMaker.Create(
         "making_clip",
         buf,
