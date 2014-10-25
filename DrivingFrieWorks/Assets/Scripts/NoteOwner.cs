@@ -18,6 +18,7 @@ public class NoteOwner : MonoBehaviour
         GameObject loadPlayMusic = (GameObject)Instantiate(prefabLoadPlayMusic);
         LoadPlayMusic playMusicScript = loadPlayMusic.GetComponent<LoadPlayMusic>();
         allNoteList = playMusicScript.GetAllNoteList();
+        Destroy(loadPlayMusic);
         float delayTime = playMusicScript.delayEmptyTime;
         endTime = playMusicScript.endTime;
         //曲の再生
@@ -95,6 +96,5 @@ public class NoteOwner : MonoBehaviour
             Destroy(line);
         }
         playMusic.Stop();
-
     }
 }

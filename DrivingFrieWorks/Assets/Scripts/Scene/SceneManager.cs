@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-public enum sceneName { Title,Select,Main,Result,NUM};
+public enum SceneName { Title,Select,Main,Result,NUM};
 public class SceneManager : MonoBehaviour {
 
 	// Use this for initialization
@@ -11,8 +11,8 @@ public class SceneManager : MonoBehaviour {
 
     void Start () {
 	//Sceneを検索して登録
-        for(int i=0;i<(int)sceneName.NUM;i++){
-            string sceneN=((sceneName)i).ToString()+"Scene";
+        for(int i=0;i<(int)SceneName.NUM;i++){
+            string sceneN=((SceneName)i).ToString()+"Scene";
             sceneList.Add(GameObject.FindWithTag(sceneN));
         }
         //title以外をfalse
@@ -29,7 +29,7 @@ public class SceneManager : MonoBehaviour {
 	void Update () {
 	
 	}
-    public void ChangeScene(sceneName s)
+    public void ChangeScene(SceneName s)
     {
         //シーン切り替え
         sceneList[(int)s].SetActive(true);

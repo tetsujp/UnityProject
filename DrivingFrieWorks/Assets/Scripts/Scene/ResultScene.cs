@@ -23,7 +23,7 @@ public class ResultScene : BasicScene
         if (Input.GetButtonDown("Decide"))
         {
 
-            ChangeScene(sceneName.Select);
+            ChangeScene(SceneName.Select);
         }
 	}
 }

@@ -8,7 +8,7 @@ public class BasicScene:MonoBehaviour {
     public virtual void Initialize(){}
     //シーンから出る時
     public virtual void SceneFinalize(){}
-    protected void ChangeScene(sceneName n)
+    protected void ChangeScene(SceneName n)
     {
         GameObject.FindWithTag("SceneManager").GetComponent<SceneManager>().ChangeScene(n);
         SceneFinalize();

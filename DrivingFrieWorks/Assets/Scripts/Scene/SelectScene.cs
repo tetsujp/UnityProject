@@ -46,6 +46,7 @@ public class SelectScene :  BasicScene
             string name = string.Empty;
             string bpm = string.Empty;
             string composer = string.Empty;
+            string[] diff = new string[3];
             while ((loopBuf = reader.ReadLine()) != null)
             {
 
@@ -65,6 +66,10 @@ public class SelectScene :  BasicScene
                 {
                     loopBuf = reader.ReadLine();
                     composer = loopBuf;
+                }
+                else if(loopBuf=="DIFFICULTY"){
+                    loopBuf = reader.ReadLine();
+                    diff=loopBuf.Split(',');
                 }
                 //コメント文
                 else if (loopBuf[0] == '/')
@@ -121,11 +126,11 @@ public class SelectScene :  BasicScene
             playState.selectName = selectBarList[playCounter].musicName;
         }
             //難易度変更
-        else if (Input.GetButtonDown("Left")&&playState.diff>difficulty.easy)
+        else if (Input.GetButtonDown("Left")&&playState.diff>Difficulty.Easy)
         {
             playState.diff=playState.diff++;
         }
-        else if(Input.GetButtonDown("Right")&&playState.diff<difficulty.extreme)
+        else if(Input.GetButtonDown("Right")&&playState.diff<Difficulty.Extreme)
         {
             playState.diff = playState.diff--;
         }
@@ -134,7 +139,7 @@ public class SelectScene :  BasicScene
         {
             //Instantiate(loadPlayMusic);
 
-            ChangeScene(sceneName.Main);
+            ChangeScene(SceneName.Main);
         }
 	}
 }

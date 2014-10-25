@@ -4,7 +4,6 @@ using System.Collections;
 public class MainScene : BasicScene
 {
     //曲データ
-
     //ノートデータ
     public GameObject prefabNoteOwner;
     GameObject noteOwner;
@@ -27,8 +26,8 @@ public class MainScene : BasicScene
         //曲の終了
         if (noteOwner.GetComponent<NoteOwner>().IsEnd())
         {
-            ChangeScene(sceneName.Result);
+            noteOwner.GetComponent<NoteOwner>().Finalize();
+            ChangeScene(SceneName.Result);
         }
-
 	}
 }

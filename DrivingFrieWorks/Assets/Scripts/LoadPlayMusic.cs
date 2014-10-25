@@ -51,7 +51,7 @@ public class LoadPlayMusic : MonoBehaviour
         {
             /*tempLoadList[i] = (LineNote)Instantiate(prefabLineNote);*/
             GameObject obj = (GameObject)Instantiate(prefabLineNote);
-            obj.GetComponent<LineNote>().lineName = (e_lineName)i;
+            obj.GetComponent<LineNote>().lineName = (LineName)i;
             tempLoadList[i] = obj.GetComponent<LineNote>();
         }
 
@@ -255,6 +255,8 @@ public class LoadPlayMusic : MonoBehaviour
             }
         }
         LoadSelectMusic();
+        //スコアセット
+        GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>().Initalize(countNote);
     }
 
 

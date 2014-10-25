@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-public enum difficulty { easy, normal, hard, extreme };
 public class PlayState : MonoBehaviour {
 
     public const double MAXSPD = 4.0;//4分
@@ -8,10 +7,11 @@ public class PlayState : MonoBehaviour {
     public const double CHANGESPD = 0.25;
 
     //プロパティ
-    public difficulty diff { get; set; }
+    public Difficulty diff { get; set; }
     public string selectName { get; set; }
     //public string musicFileName { get; set; }
     public double multspd { get; set; }//画面内に表示する泊数,mult=1で一泊
+
 
     // Use this for initialization
     void Start()

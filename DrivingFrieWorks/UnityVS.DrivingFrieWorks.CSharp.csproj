@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Scene\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Scene\SelectScene.cs" />
     <Compile Include="Assets\Scripts\Scene\TitleScene.cs" />
+    <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\SelectBar.cs" />
     <Compile Include="Assets\Scripts\SingleNote.cs" />
     <Compile Include="Assets\Scripts\WavFileInfo.cs" />

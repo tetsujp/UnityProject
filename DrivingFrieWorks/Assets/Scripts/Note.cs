@@ -41,11 +41,11 @@ public class Note : MonoBehaviour
     {
 
     }
-    public void Hit(e_judgeKind kind)
+    public void Hit(JudgeKind kind)
     {
         CreateFlower(kind);
     }
-    void CreateFlower(e_judgeKind kind)
+    void CreateFlower(JudgeKind kind)
     {
         Instantiate(prefabFlower,transform.position,Quaternion.identity);
     }

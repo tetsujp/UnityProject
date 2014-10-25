@@ -2,22 +2,21 @@
 using System.Collections;
 using System.Collections.Generic;
 //ライン毎のノートのリスト
-public enum e_lineName { left, leftCenter, center, rightCenter, right }
-public enum e_judgeKind{just,great,good,miss}
 public class LineNote : MonoBehaviour
 {
     //Noteのリスト
     List<Note> noteList=new List<Note>();
     int displayNoteNumber=0;//何番目のノートまで出たか
     int hitNoteNumber = 0;//何番目のノートの判定が終了したか
-    public e_lineName lineName{get;set;}
-    
+    public LineName lineName{get;set;}
+
+    ScoreManager scoreManager;
 
     readonly float[] JUDGE_TIME = { 0.2f, 0.3f, 0.4f };//判定時間
 	// Use this for initialization
 	void Start ()
 	{
-
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         //noteList = new List<Note>();
         
 	}
@@ -64,29 +63,33 @@ public class LineNote : MonoBehaviour
         if (Input.GetButtonDown(lineName.ToString()))
         {
             //just
-            if (absTime < JUDGE_TIME[(int)e_judgeKind.just])
+            if (absTime < JUDGE_TIME[(int)JudgeKind.Just])
             {
-                noteList[hitNoteNumber].Hit(e_judgeKind.just);
+                noteList[hitNoteNumber].Hit(JudgeKind.Just);
+                scoreManager.AddScore(JudgeKind.Just);
                 hitNoteNumber++;
             }
                 //great
-            else if (absTime < JUDGE_TIME[(int)e_judgeKind.great])
+            else if (absTime < JUDGE_TIME[(int)JudgeKind.Great])
             {
-                noteList[hitNoteNumber].Hit(e_judgeKind.great);
+                noteList[hitNoteNumber].Hit(JudgeKind.Great);
+                scoreManager.AddScore(JudgeKind.Great);
                 hitNoteNumber++;
 
             }
                 //good
-            else if (absTime < JUDGE_TIME[(int)e_judgeKind.good])
+            else if (absTime < JUDGE_TIME[(int)JudgeKind.Good])
             {
-                noteList[hitNoteNumber].Hit(e_judgeKind.good);
+                noteList[hitNoteNumber].Hit(JudgeKind.Good);
+                scoreManager.AddScore(JudgeKind.Good);
                 hitNoteNumber++;
             }
         }
         //miss
-        else if (nowTime - noteList[hitNoteNumber].judgeTime > JUDGE_TIME[(int)e_judgeKind.good])
+        else if (nowTime - noteList[hitNoteNumber].judgeTime > JUDGE_TIME[(int)JudgeKind.Good])
         {
             hitNoteNumber++;
+            scoreManager.AddScore(JudgeKind.Miss);
         }
         
     }

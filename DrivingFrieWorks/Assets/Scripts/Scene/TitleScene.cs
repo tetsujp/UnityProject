@@ -25,7 +25,7 @@ public class TitleScene :  BasicScene
         {
             //曲選択画面へ
 
-            ChangeScene(sceneName.Select);
+            ChangeScene(SceneName.Select);
         }
 	}
 }
