@@ -76,12 +76,13 @@
     <Compile Include="Assets\Scripts\WavFileInfo.cs" />
     <None Include="Assets\Music\3rd cosmic velocity\easy.txt" />
     <None Include="Assets\Music\3rd cosmic velocity\info.txt" />
-    <None Include="Assets\Music\Call of Fall\easy.txt" />
-    <None Include="Assets\Music\Call of Fall\info.txt" />
+    <None Include="Assets\Music\Colorful Cookie\easy.txt" />
+    <None Include="Assets\Music\Colorful Cookie\info.txt" />
     <None Include="Assets\Music\tempo\easy.txt" />
     <None Include="Assets\Music\tempo\info.txt" />
     <None Include="Assets\Resources\Music\easy.txt" />
     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+    <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
 </Project>

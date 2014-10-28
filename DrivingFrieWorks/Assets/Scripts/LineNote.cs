@@ -12,7 +12,7 @@ public class LineNote : MonoBehaviour
 
     ScoreManager scoreManager;
 
-    readonly float[] JUDGE_TIME = { 0.2f, 0.3f, 0.4f };//判定時間
+    public readonly float[] JUDGE_TIME = { 0.07f, 0.12f, 0.2f };//判定時間
 	// Use this for initialization
 	void Start ()
 	{
@@ -88,6 +88,7 @@ public class LineNote : MonoBehaviour
         //miss
         else if (nowTime - noteList[hitNoteNumber].judgeTime > JUDGE_TIME[(int)JudgeKind.Good])
         {
+            noteList[hitNoteNumber].Hit(JudgeKind.Miss);
             hitNoteNumber++;
             scoreManager.AddScore(JudgeKind.Miss);
         }

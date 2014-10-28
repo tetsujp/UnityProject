@@ -249,14 +249,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6842cdf67eb05b34fbf6a1e2368bcc21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition:
+  startPosition: {fileID: 100000, guid: 3a76027506f00c141bf3f8a876782037, type: 2}
+  hitPosition:
   - {fileID: 100000, guid: d816d112e9c2763429b9b84deee6b3bc, type: 2}
   - {fileID: 100000, guid: 1629ea6cb8ac0f64fac89b1b31cf9a4e, type: 2}
   - {fileID: 100000, guid: 31731b0266a057248bc419a3ae00d873, type: 2}
   - {fileID: 100000, guid: 6cdeda6ed47949144922abc0ff85442c, type: 2}
   - {fileID: 100000, guid: a9bde1119cff559498600584b5ee08de, type: 2}
-  sumTime: 10
-  prefabFlower: {fileID: 100010, guid: fe75f538c66af0c4b864e6fb10b43123, type: 2}
+  prefabFlower:
+  - {fileID: 100010, guid: e12114efae256ca4aa5958d7c2bb1719, type: 2}
+  - {fileID: 100004, guid: 3abcc6bf1361e8b479995a1bcc5a58fc, type: 2}
+  - {fileID: 100002, guid: 1060614e2db442d449dd6c7ca4176533, type: 2}
 --- !u!198 &19800000
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -83,7 +83,7 @@ public class NoteOwner : MonoBehaviour
         return false;
     }
     //オブジェクト削除
-    public void Finalize()
+    public void FinalizeObj()
     {
         //Note削除
         foreach (var note in GameObject.FindGameObjectsWithTag("Note"))

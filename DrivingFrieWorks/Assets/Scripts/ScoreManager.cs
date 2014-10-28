@@ -3,10 +3,10 @@ using System.Collections;
 
 public class ScoreManager : MonoBehaviour {
 
-    double[] score;
+    double[] score{get;set;}
     double maxScore;
     double nowScore;
-    double percentScore;
+    public double percentScore{get;set;}
     readonly int[] SCORE_POINT={ 3, 2, 1,0 };//スコア基礎点
 	// Use this for initialization
 	void Start () {
@@ -34,6 +34,10 @@ public class ScoreManager : MonoBehaviour {
     void SetMaxScore(int countNum)
     {
         maxScore = countNum * (int)SCORE_POINT[0];
+    }
+    public double GetJudgeScore(JudgeKind k)
+    {
+        return score[(int)k];
     }
 
 

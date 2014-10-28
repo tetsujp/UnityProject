@@ -217,7 +217,7 @@ public class LoadPlayMusic : MonoBehaviour
                                 longLineFlag[intBuf] = true;
 
                                 LongNote longN = ((GameObject)Instantiate(prefabLongNote)).GetComponent<LongNote>();
-                                longN.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
+                                longN.Initialize(judgeTime, apperTime, intBuf);
                                 tempLongData[intBuf] = longN;
 
                                 longStartFlag = false;
@@ -232,7 +232,7 @@ public class LoadPlayMusic : MonoBehaviour
                             {
 
                                 SingleNote singleN = ((GameObject)Instantiate(prefabSingleNote)).GetComponent<SingleNote>();
-                                singleN.Initialize(judgeTime, bpmTemp, apperTime, intBuf);
+                                singleN.Initialize(judgeTime, apperTime, intBuf);
                                 data = singleN;
                             }
 

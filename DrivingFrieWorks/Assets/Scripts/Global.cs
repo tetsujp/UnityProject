@@ -2,8 +2,8 @@
 using System.Collections;
 
 
-public enum Difficulty { Easy, Normal, Hard, Extreme };
-public enum LineName { Left, LeftCenter, Center, RightCenter, Right }
+public enum Difficulty { Easy, Normal, Hard };
+public enum LineName { KeyLeft, KeyLeftCenter, KeyCenter, KeyRightCenter, KeyRight }
 public enum JudgeKind { Just, Great, Good, Miss, NUM }
 
 public class Global : MonoBehaviour
