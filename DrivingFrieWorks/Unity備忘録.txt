@@ -88,3 +88,12 @@ http://icoc-dev.hatenablog.com/
 githubによる同期でMissingになる
 解決策
 ignoreには.metaは含めない
+
+ファイルなどのリソースはGCでは自動的に開放されない
+usingステートを利用し破棄する必要がある
+http://ufcpp.net/study/csharp/oo_dispose.html
+
+Readlineは改行コードなし
+空行はstring buf=read.readline()
+buf==""
+で判定

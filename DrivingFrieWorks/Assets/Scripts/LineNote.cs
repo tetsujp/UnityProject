@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 //ライン毎のノートのリスト
 public class LineNote : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class LineNote : MonoBehaviour
 
     ScoreManager scoreManager;
 
-    public readonly float[] JUDGE_TIME = { 0.07f, 0.12f, 0.2f };//判定時間
+    public readonly float[] JUDGE_TIME = { 0.06f, 0.10f, 0.2f };//判定時間
 	// Use this for initialization
 	void Start ()
 	{
@@ -58,7 +59,13 @@ public class LineNote : MonoBehaviour
     {
         float nowTime = Time.time - startTime;
         if (hitNoteNumber >= noteList.Count) return ;
-        float absTime=Mathf.Abs((float)noteList[hitNoteNumber].judgeTime - nowTime);
+        float judge_now_time=((float)noteList[hitNoteNumber].judgeTime - nowTime);
+        //judgeTimeを過ぎていた場合、止める
+        if (judge_now_time < 0)
+        {
+            noteList[hitNoteNumber].StopMove();
+        }
+        float absTime=Mathf.Abs(judge_now_time);
         //入力時
         if (Input.GetButtonDown(lineName.ToString()))
         {
@@ -92,6 +99,9 @@ public class LineNote : MonoBehaviour
             hitNoteNumber++;
             scoreManager.AddScore(JudgeKind.Miss);
         }
-        
+    }
+    public void SortList()
+    {
+        noteList.Sort((a, b) => (int)(a.apperTime - b.apperTime));
     }
 }

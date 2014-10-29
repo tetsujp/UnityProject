@@ -9,6 +9,7 @@ public class Note : MonoBehaviour
     
     public GameObject[] prefabFlower;
 
+    public GameObject[] hitPosition;
 
 
     public virtual void Initialize(double j,double a, int l)
@@ -16,6 +17,8 @@ public class Note : MonoBehaviour
         judgeTime = j;
         apperTime = a;
         line = l;
+        //自分の座標を花火が出る点に変更
+        transform.position = hitPosition[line].transform.position;
     }
 
 
@@ -40,6 +43,10 @@ public class Note : MonoBehaviour
     void CreateFlower(JudgeKind kind)
     {
         Instantiate(prefabFlower[(int)kind],transform.position,Quaternion.identity);
+    }
+    public void StopMove()
+    {
+        transform.position = hitPosition[line].transform.position;
     }
 
 }

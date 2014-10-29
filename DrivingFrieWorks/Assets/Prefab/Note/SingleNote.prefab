@@ -171,13 +171,24 @@ MonoBehaviour:
   - {fileID: 100000, guid: 15a9fca9ae8c136408528124024c2a8e, type: 2}
   - {fileID: 100000, guid: 0510151a2e3522141822deaec64031b1, type: 2}
   - {fileID: 100000, guid: 254bf2f9f210fba4d99b637613a5f62d, type: 2}
-  lowPosition: {fileID: 100000, guid: a09f487c38a5e734a95af48498a6f2a9, type: 2}
+  - {fileID: 100000, guid: e2f446c462a9aca488cca7c35125f72d, type: 2}
+  - {fileID: 100000, guid: c92d61950156f95488be723d4000e642, type: 2}
+  lowPosition:
+  - {fileID: 100000, guid: a09f487c38a5e734a95af48498a6f2a9, type: 2}
+  - {fileID: 100000, guid: a09f487c38a5e734a95af48498a6f2a9, type: 2}
+  - {fileID: 100000, guid: a09f487c38a5e734a95af48498a6f2a9, type: 2}
+  - {fileID: 100000, guid: a09f487c38a5e734a95af48498a6f2a9, type: 2}
+  - {fileID: 100000, guid: a09f487c38a5e734a95af48498a6f2a9, type: 2}
+  - {fileID: 100000, guid: dbee1ed25da6c5544a2949beb4c6af23, type: 2}
+  - {fileID: 100000, guid: 3fb335600bf9e434a87c946c460b3ade, type: 2}
   hitPosition:
   - {fileID: 100000, guid: d816d112e9c2763429b9b84deee6b3bc, type: 2}
   - {fileID: 100000, guid: 1629ea6cb8ac0f64fac89b1b31cf9a4e, type: 2}
   - {fileID: 100000, guid: 31731b0266a057248bc419a3ae00d873, type: 2}
   - {fileID: 100000, guid: 6cdeda6ed47949144922abc0ff85442c, type: 2}
   - {fileID: 100000, guid: a9bde1119cff559498600584b5ee08de, type: 2}
+  - {fileID: 100000, guid: 373c3a400d5d4b948b1eadc80e7ed36e, type: 2}
+  - {fileID: 100000, guid: 1d5d31babd40b0540939c614ae3eb69b, type: 2}
 --- !u!198 &19800002
 ParticleSystem:
   m_ObjectHideFlags: 1

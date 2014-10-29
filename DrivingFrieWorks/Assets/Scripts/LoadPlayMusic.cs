@@ -110,7 +110,12 @@ public class LoadPlayMusic : MonoBehaviour
                     {
                         int readCount = 0;
                         //改行時飛ばし
-                        if (buf == "\n") continue;
+                        if (buf == "") continue;
+                        string a_buf = buf[0].ToString();
+                        if (a_buf == "/")
+                        {
+                            continue;
+                        }
                         //1文字読み込み
 
                         while (readCount < buf.Length)
@@ -175,6 +180,12 @@ public class LoadPlayMusic : MonoBehaviour
                                     //コメント
                             else if (c_buf == "/")
                             {
+                                ////先頭
+                                //if (readCount == 0)
+                                //{
+                                //    readCount = buf.Length;
+                                //    continue;  
+                                //}
                                 while (buf[readCount] != '&')
                                 {
                                     readCount++;
@@ -257,6 +268,11 @@ public class LoadPlayMusic : MonoBehaviour
                 }
             }
         }
+        //judgetimeでリストソート
+        //foreach (var l in tempLoadList)
+        //{
+        //    l.SortList();
+        //}
         LoadSelectMusic();
         //スコアセット
         GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>().Initalize(countNote);
