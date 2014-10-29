@@ -37,65 +37,69 @@ public class SelectScene :  BasicScene
         for (var i = 0; i < allFolderPath.Length;i++ )
         {
 
-            FileStream f = new FileStream(allFolderPath[i] + "/info.txt", FileMode.Open, FileAccess.Read);
-            StreamReader reader = new StreamReader(f);
-            //読み込み失敗
-            if (reader == null)
+            using(FileStream f = new FileStream(allFolderPath[i] + "/info.txt", FileMode.Open, FileAccess.Read))
+            using (StreamReader reader = new StreamReader(f))
             {
-                Debug.Log("ファイルが見つかりません");
-                return;
+                //読み込み失敗
+                if (reader == null)
+                {
+                    Debug.Log("ファイルが見つかりません");
+                    return;
+                }
+                string loopBuf;
+
+                //曲情報
+                MusicData d = new MusicData();
+
+                while ((loopBuf = reader.ReadLine()) != null)
+                {
+
+                    //名前取得
+                    if (loopBuf == "FILENAME")
+                    {
+                        loopBuf = reader.ReadLine();
+                        d.musicName = loopBuf;
+                    }
+                    //BPM取得
+                    else if (loopBuf == "BPMRANGE")
+                    {
+                        loopBuf = reader.ReadLine();
+                        d.bpmRange = loopBuf;
+                    }
+                    else if (loopBuf == "COMPOSER")
+                    {
+                        loopBuf = reader.ReadLine();
+                        d.composer = loopBuf;
+                    }
+                    else if (loopBuf == "GENRE")
+                    {
+                        loopBuf = reader.ReadLine();
+                        d.genre = loopBuf;
+
+                    }
+                    else if (loopBuf == "DIFFICULTY")
+                    {
+                        loopBuf = reader.ReadLine();
+                        d.diff = loopBuf.Split(',');
+                    }
+                    else if (loopBuf == "COMMENT")
+                    {
+                        loopBuf = reader.ReadLine();
+                        d.comment = loopBuf;
+                    }
+                    //コメント文
+                    else if (loopBuf[0] == '/')
+                    {
+                        continue;
+                    }
+                }
+
+                var select = (GameObject)Instantiate(selectBar);
+                var script = select.GetComponent<SelectBar>();
+                script.Initialize(i, d);
+                selectBarList.Add(script);
+                MaxMusicNumber++;
             }
-            string loopBuf;
-
-            //曲情報
-            MusicData d=new MusicData();
-            
-            while ((loopBuf = reader.ReadLine()) != null)
-            {
-
-                //名前取得
-                if (loopBuf == "FILENAME")
-                {
-                    loopBuf = reader.ReadLine();
-                    d.musicName = loopBuf;
-                }
-                //BPM取得
-                else if (loopBuf == "BPMRANGE")
-                {
-                    loopBuf = reader.ReadLine();
-                    d.bpmRange = loopBuf;
-                }
-                else if (loopBuf == "COMPOSER")
-                {
-                    loopBuf = reader.ReadLine();
-                    d.composer = loopBuf;
-                }
-                else if (loopBuf == "GENRE")
-                {
-                    loopBuf = reader.ReadLine();
-                    d.genre = loopBuf;
-
-                }
-                else if(loopBuf=="DIFFICULTY"){
-                    loopBuf = reader.ReadLine();
-                    d.diff=loopBuf.Split(',');
-                }
-                else if (loopBuf == "COMMENT")
-                {
-                    loopBuf = reader.ReadLine();
-                    d.comment = loopBuf;
-                }
-                //コメント文
-                else if (loopBuf[0] == '/')
-                {
-                    continue;
-                }
-            }
-            var select = (GameObject)Instantiate(selectBar);
-            var script=select.GetComponent<SelectBar>();
-            script.Initialize(i,d);
-            selectBarList.Add(script);
-            MaxMusicNumber++;
         }
         playState = GameObject.FindGameObjectWithTag("PlayState").GetComponent<PlayState>();
         selectCanvas = GameObject.FindGameObjectWithTag("StateCanvas");
