@@ -10,6 +10,8 @@ public class LineNote : MonoBehaviour
     int displayNoteNumber=0;//何番目のノートまで出たか
     int hitNoteNumber = 0;//何番目のノートの判定が終了したか
     public LineName lineName{get;set;}
+    public Transform[] pushPosition;
+    public GameObject prefabPushNote;//地面に出すエフェクト
 
     ScoreManager scoreManager;
 
@@ -65,10 +67,18 @@ public class LineNote : MonoBehaviour
         {
             noteList[hitNoteNumber].StopMove();
         }
+        //Justに入ったらエフェクト
+        if (judge_now_time < JUDGE_TIME[(int)JudgeKind.Just])
+        {
+            noteList[hitNoteNumber].StartJustAnimation();
+        }
         float absTime=Mathf.Abs(judge_now_time);
         //入力時
         if (Input.GetButtonDown(lineName.ToString()))
         {
+            //下の花火を出す
+            Instantiate(prefabPushNote, pushPosition[(int)lineName].position, Quaternion.identity);
+
             //just
             if (absTime < JUDGE_TIME[(int)JudgeKind.Just])
             {

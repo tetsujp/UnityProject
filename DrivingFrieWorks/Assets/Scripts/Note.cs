@@ -10,15 +10,17 @@ public class Note : MonoBehaviour
     public GameObject[] prefabFlower;
 
     public GameObject[] hitPosition;
-
+    protected Transform startPostion;
+    protected Transform justAnimation;
+    MainCamera camera;
 
     public virtual void Initialize(double j,double a, int l)
     {
         judgeTime = j;
         apperTime = a;
         line = l;
-        //自分の座標を花火が出る点に変更
-        transform.position = hitPosition[line].transform.position;
+        justAnimation = gameObject.transform.FindChild("JustAnimation");
+        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent <MainCamera>();
     }
 
 
@@ -36,6 +38,10 @@ public class Note : MonoBehaviour
     {
         if (kind != JudgeKind.Miss)
         {
+            if (line == (int)LineName.KeyLeftLeft || line == (int)LineName.KeyRightRight)
+            {
+                camera.SetRotate((LineName)line);
+            }
             CreateFlower(kind);
         }
         Destroy(gameObject);
@@ -44,9 +50,12 @@ public class Note : MonoBehaviour
     {
         Instantiate(prefabFlower[(int)kind],transform.position,Quaternion.identity);
     }
-    public void StopMove()
+    public virtual void StopMove()
     {
-        transform.position = hitPosition[line].transform.position;
+    }
+    public void StartJustAnimation()
+    {
+
     }
 
 }

@@ -31,7 +31,7 @@ public class SelectBar : MonoBehaviour {
     public void Initialize(int count, MusicData d)
     {
         gameObject.transform.parent = GameObject.FindWithTag("SelectCanvas").transform;
-        transform.localPosition = new Vector3(0, 0, 0);
+        //transform.localPosition = new Vector3(0, 0, 0);
         transform.position += new Vector3(0, -moveToPosition * count, 0);
         firstPositionX = transform.position.x;
         data = d;
@@ -56,11 +56,11 @@ public class SelectBar : MonoBehaviour {
     {
         //右に戻す
         transform.position = new Vector3(firstPositionX, transform.position.y, transform.position.z);
-        if (Input.GetButtonDown("Up"))
+        if (Input.GetButtonDown("Down"))
         {
             transform.position = new Vector3(transform.position.x, transform.position.y + moveToPosition, transform.position.z);
         }
-        else if (Input.GetButtonDown("Down"))
+        else if (Input.GetButtonDown("Up"))
         {
             transform.position = new Vector3(transform.position.x, transform.position.y -moveToPosition, transform.position.z);
         }

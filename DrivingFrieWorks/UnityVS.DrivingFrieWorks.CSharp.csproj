@@ -72,10 +72,14 @@
     <Compile Include="Assets\Scripts\Scene\TitleScene.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\SelectBar.cs" />
+    <Compile Include="Assets\Scripts\SideNote.cs" />
     <Compile Include="Assets\Scripts\SingleNote.cs" />
     <Compile Include="Assets\Scripts\WavFileInfo.cs" />
     <None Include="Assets\Music\3rd cosmic velocity\easy.txt" />
     <None Include="Assets\Music\3rd cosmic velocity\info.txt" />
+    <None Include="Assets\Music\CIRCLECHANGE\easy.txt" />
+    <None Include="Assets\Music\CIRCLECHANGE\info.txt" />
+    <None Include="Assets\Music\CIRCLECHANGE\note[0].txt" />
     <None Include="Assets\Music\Colorful Cookie\easy.txt" />
     <None Include="Assets\Music\Colorful Cookie\info.txt" />
     <None Include="Assets\Music\Progress\easy.txt" />

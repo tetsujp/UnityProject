@@ -19,6 +19,7 @@ public class LoadPlayMusic : MonoBehaviour
     //プレハブ
     public GameObject prefabLineNote;//Line
     public GameObject prefabSingleNote;//Single
+    public GameObject prefabSideNote;
     public GameObject prefabLongNote;//Long
 
 
@@ -154,6 +155,7 @@ public class LoadPlayMusic : MonoBehaviour
                                     bpmTemp = double.Parse(tBpm);
                                     hakuTime = (60 * 4 / (bpmTemp * syosetsuNum));
                                     //4分の時間
+                                    //4分にして時間を変更する
                                     dispTime = hakuTime * 4 / syosetsuNum;
                                 }
                             }
@@ -216,7 +218,7 @@ public class LoadPlayMusic : MonoBehaviour
                                 if (startSetFlag == false) continue;
 
                                 int intBuf = int.Parse(c_buf);
-                                Note data;
+                                Note data = null;
 
                                 //表示時間の設定
 
@@ -243,10 +245,19 @@ public class LoadPlayMusic : MonoBehaviour
                                 //単ノートはこのまま入る
                                 if (longLineFlag[intBuf] == false)
                                 {
-
-                                    SingleNote singleN = ((GameObject)Instantiate(prefabSingleNote)).GetComponent<SingleNote>();
-                                    singleN.Initialize(judgeTime, apperTime, intBuf);
-                                    data = singleN;
+                                    if (intBuf < (int)LineName.KeyLeftLeft)
+                                    {
+                                        SingleNote singleN = ((GameObject)Instantiate(prefabSingleNote)).GetComponent<SingleNote>();
+                                        singleN.Initialize(judgeTime, apperTime, intBuf);
+                                        data = singleN;
+                                    }
+                                    else
+                                    {
+                                        SideNote sideN = ((GameObject)Instantiate(prefabSideNote)).GetComponent<SideNote>();
+                                        sideN.Initialize(judgeTime, apperTime, intBuf);
+                                        data = sideN;
+                                    }
+                                  
                                 }
 
                                 //ロングノートは終点を適用

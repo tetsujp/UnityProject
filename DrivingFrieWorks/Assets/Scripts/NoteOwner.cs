@@ -39,7 +39,7 @@ public class NoteOwner : MonoBehaviour
 
     //画面に内に出す判定
     //コルーチンで実装
-    public float displayInterval = 0.01f;//ループ時間10ms
+    public float displayInterval = 0.005f;//ループ時間10ms
     IEnumerator NoteDisplay()
     {
         while (true)

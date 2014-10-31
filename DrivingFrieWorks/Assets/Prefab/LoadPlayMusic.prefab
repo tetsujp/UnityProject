@@ -41,6 +41,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabLineNote: {fileID: 100000, guid: 3c74fe9ea1dde03478b242c18020fcd1, type: 2}
   prefabSingleNote: {fileID: 100004, guid: fcecce03da720504bb62146390436545, type: 2}
+  prefabSideNote: {fileID: 100006, guid: 8cb28379e7da6d747af13be131d436b0, type: 2}
   prefabLongNote: {fileID: 100014, guid: b6fab26a24a37d645b89a8c3a7956574, type: 2}
 --- !u!1001 &100100000
 Prefab:

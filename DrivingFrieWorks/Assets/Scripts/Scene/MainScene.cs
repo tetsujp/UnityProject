@@ -34,6 +34,11 @@ public class MainScene : BasicScene
             noteOwner.GetComponent<NoteOwner>().FinalizeObj();
             ChangeScene(SceneName.Result);
         }
+        if (Input.GetButtonDown("Stop"))
+        {
+            noteOwner.GetComponent<NoteOwner>().FinalizeObj();
+            ChangeScene(SceneName.Result);
+        }
         SetScore();
 	}
     void SetScore()

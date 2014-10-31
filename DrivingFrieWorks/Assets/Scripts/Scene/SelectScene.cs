@@ -12,6 +12,7 @@ public class SelectScene :  BasicScene
 	// Use this for initialization
     public GameObject selectBar;
     GameObject selectCanvas;
+    GameObject stateCanvas;
     //public GameObject loadPlayMusic;
     PlayState playState;
     List<SelectBar> selectBarList = new List<SelectBar>();
@@ -102,7 +103,8 @@ public class SelectScene :  BasicScene
             }
         }
         playState = GameObject.FindGameObjectWithTag("PlayState").GetComponent<PlayState>();
-        selectCanvas = GameObject.FindGameObjectWithTag("StateCanvas");
+        stateCanvas = GameObject.FindGameObjectWithTag("StateCanvas");
+        selectCanvas = GameObject.FindGameObjectWithTag("SelectCanvas");
         SetDataTable();
         SetMusicData();
         SceneFinalize();
@@ -126,7 +128,7 @@ public class SelectScene :  BasicScene
 	// Update is called once per frame
 	void Update () {
         //SelectBarの移動
-        if (Input.GetButtonDown("Up")&&playCounter<MaxMusicNumber)
+        if (Input.GetButtonDown("Down")&&playCounter<MaxMusicNumber)
         {
             playCounter++;
             foreach (var select in selectBarList)
@@ -135,7 +137,7 @@ public class SelectScene :  BasicScene
             }
             SetMusicData();
         }
-        else if(Input.GetButtonDown("Down")&&playCounter>0){
+        else if(Input.GetButtonDown("Up")&&playCounter>0){
             playCounter--;
             foreach (var select in selectBarList)
             {
@@ -146,12 +148,12 @@ public class SelectScene :  BasicScene
             //難易度変更
         else if (Input.GetButtonDown("Left")&&playState.diff>Difficulty.Easy)
         {
-            playState.diff=playState.diff--;
+            playState.diff=playState.diff-1;
             SetMusicData();
         }
         else if(Input.GetButtonDown("Right")&&playState.diff<Difficulty.Hard)
         {
-            playState.diff = playState.diff++;
+            playState.diff = playState.diff+1;
             SetMusicData();
         }
             //速度変更
@@ -178,6 +180,12 @@ public class SelectScene :  BasicScene
         playState.selectName = selectBarList[playCounter].data.musicName;
         selectBarList[playCounter].MoveNowSelect();
 
+        selectCanvas.transform.FindChild("Easy").gameObject.SetActive(false);
+        selectCanvas.transform.FindChild("Normal").gameObject.SetActive(false);
+        selectCanvas.transform.FindChild("Hard").gameObject.SetActive(false);
+
+
+        selectCanvas.transform.FindChild(playState.diff.ToString()).gameObject.SetActive(true);
 
         musicDataTable["DiffNumber"].text = "Difficulty: "+selectBarList[playCounter].data.diff[(int)playState.diff];
         musicDataTable["HighSpeed"].text = "PlaySpeed: " + playState.multspd.ToString();
@@ -190,7 +198,7 @@ public class SelectScene :  BasicScene
     }
     void SetDataTable()
     {
-        var list=selectCanvas.GetComponentsInChildren<Transform>().Where(c =>selectCanvas.transform!=c).ToArray();
+        var list = stateCanvas.GetComponentsInChildren<Transform>().Where(c => stateCanvas.transform != c).ToArray();
         foreach (var l in list)
         {
             musicDataTable.Add(l.name,l.GetComponent<Text>());

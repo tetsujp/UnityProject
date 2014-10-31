@@ -39,6 +39,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d7d5cef5c171a34883775df639b6907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pushPosition:
+  - {fileID: 400000, guid: f293891dbad1e6447b27572a32c0bd35, type: 2}
+  - {fileID: 400000, guid: 0807b2e40a1738848acf66401df157cc, type: 2}
+  - {fileID: 400000, guid: a1ae78672967bbf44b0a67be94ff5855, type: 2}
+  - {fileID: 400000, guid: d5808abd5070f294c932fa45745ded7d, type: 2}
+  - {fileID: 400000, guid: 3a4b5681bd50a0547b187d582d4e7c9a, type: 2}
+  - {fileID: 400000, guid: 0a7192553e6c15a45bea6e70f5684944, type: 2}
+  - {fileID: 400000, guid: 3cbe5cee80fcead4e80f1718f61eb770, type: 2}
+  prefabPushNote: {fileID: 100000, guid: 5f617f67036b1a2459fa967f0f786e90, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
