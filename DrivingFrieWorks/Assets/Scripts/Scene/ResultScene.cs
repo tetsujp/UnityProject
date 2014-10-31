@@ -37,7 +37,7 @@ public class ResultScene : BasicScene
     }
     public override void SceneFinalize()
     {
-
+        scoreManager.Finalizer();
     }
 	
 	// Update is called once per frame

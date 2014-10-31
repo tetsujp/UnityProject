@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AudioClipMaker.cs" />
+    <Compile Include="Assets\Scripts\EndDelete.cs" />
     <Compile Include="Assets\Scripts\Flower.cs" />
     <Compile Include="Assets\Scripts\Global.cs" />
     <Compile Include="Assets\Scripts\LineNote.cs" />

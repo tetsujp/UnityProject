@@ -9,7 +9,7 @@ public class MainScene : BasicScene
     //ノートデータ
     public GameObject prefabNoteOwner;
     GameObject noteOwner;
-    ScoreManager scoreManager;
+    GameObject scoreManager;
     Transform score;
     //曲をいれておく
     public Dictionary<string, AudioClip> stockMusic = new Dictionary<string, AudioClip>();
@@ -20,7 +20,7 @@ public class MainScene : BasicScene
     override public void Initialize()
     {
         noteOwner=(GameObject)Instantiate(prefabNoteOwner);
-        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager");
         score = transform.FindChild("Canvas").transform.FindChild("Score");
     }
     override public void SceneFinalize()
@@ -43,12 +43,6 @@ public class MainScene : BasicScene
             noteOwner.GetComponent<NoteOwner>().FinalizeObj();
             ChangeScene(SceneName.Result);
         }
-        SetScore();
+        
 	}
-    void SetScore()
-    {
-        double s=scoreManager.percentScore;
-        if (s < 100) score.GetComponent<Text>().text = s.ToString("F1");
-        else score.GetComponent<Text>().text = "100";
-    }
 }
