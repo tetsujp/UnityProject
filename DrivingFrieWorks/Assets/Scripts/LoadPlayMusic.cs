@@ -304,25 +304,39 @@ public class LoadPlayMusic : MonoBehaviour
         GameObject m_AudioPlayer = GameObject.FindWithTag("Music");
         PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
         string path = string.Format("{0}/Music/{1}/{1}.wav", Application.dataPath, playStateScript.selectName);
-        byte[] buf = File.ReadAllBytes(path);
-        // analyze wav file
-        m_WavInfo.Analyze(buf);
-        // create audio clip
-        AudioSource source = m_AudioPlayer.GetComponent<AudioSource>();
 
-        //再利用を可能にしたい
-        source.clip = m_ClipMaker.Create(
-        "making_clip",
-        buf,
-        m_WavInfo.TrueWavBufIdx,
-        m_WavInfo.BitPerSample,
-        m_WavInfo.TrueSamples,
-        m_WavInfo.Channels,
-        m_WavInfo.Frequency,
-        false,
-        false
-        );
+        AudioSource source = m_AudioPlayer.GetComponent<AudioSource>();
+        //曲をいれておく
+        var stockMusic=GameObject.FindGameObjectWithTag("MainScene").GetComponent<MainScene>().stockMusic;
+
+        if (stockMusic.ContainsKey(playStateScript.selectName))
+        {
+            source.clip = stockMusic[playStateScript.selectName];
+        }
+        else
+        {
+            byte[] buf = File.ReadAllBytes(path);
+            // analyze wav file
+            m_WavInfo.Analyze(buf);
+            // create audio clip
+            //再利用を可能にしたい
+            AudioClip clip = m_ClipMaker.Create(
+            "making_clip",
+            buf,
+            m_WavInfo.TrueWavBufIdx,
+            m_WavInfo.BitPerSample,
+            m_WavInfo.TrueSamples,
+            m_WavInfo.Channels,
+            m_WavInfo.Frequency,
+            false,
+            false
+            );
+            stockMusic.Add(playStateScript.selectName, clip);
+            source.clip = stockMusic[playStateScript.selectName];
+        }
+
         source.time = (float)startEditTime;
+
     }
 
     public LineNote[] GetAllNoteList() { return tempLoadList; }

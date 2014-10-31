@@ -10,7 +10,6 @@ public class NoteOwner : MonoBehaviour
     float startTime;
     double endTime;
     AudioSource playMusic;
-
     // Use this for initialization
     void Start()
     {

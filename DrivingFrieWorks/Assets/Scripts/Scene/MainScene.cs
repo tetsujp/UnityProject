@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class MainScene : BasicScene
 {
@@ -10,6 +11,9 @@ public class MainScene : BasicScene
     GameObject noteOwner;
     ScoreManager scoreManager;
     Transform score;
+    //曲をいれておく
+    public Dictionary<string, AudioClip> stockMusic = new Dictionary<string, AudioClip>();
+
 	// Use this for initialization
 	void Start () {
 	}
