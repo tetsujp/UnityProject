@@ -12,7 +12,7 @@ public class Note : MonoBehaviour
     public GameObject[] hitPosition;
     protected Transform startPostion;
     protected Transform justAnimation;
-    MainCamera camera;
+    MainCamera came;
 
     public virtual void Initialize(double j,double a, int l)
     {
@@ -20,7 +20,7 @@ public class Note : MonoBehaviour
         apperTime = a;
         line = l;
         justAnimation = gameObject.transform.FindChild("JustAnimation");
-        camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent <MainCamera>();
+        came = GameObject.FindGameObjectWithTag("MainCamera").GetComponent <MainCamera>();
     }
 
 
@@ -40,7 +40,7 @@ public class Note : MonoBehaviour
         {
             if (line == (int)LineName.KeyLeftLeft || line == (int)LineName.KeyRightRight)
             {
-                camera.SetRotate((LineName)line);
+                came.SetRotate((LineName)line);
             }
             CreateFlower(kind);
         }

@@ -4,15 +4,15 @@ using System.Collections;
 public class MainCamera : MonoBehaviour
 {
     enum RotateKind {Left=0,Right}
-    float angle =200f;
+    float angle =400f;
     Vector3 center=new Vector3(0,0,0);
     Vector3 startPos;
-    bool[] rotateFlag;
+    //bool[] rotateFlag;
 	// Use this for initialization
     void Start()
     {
         startPos = transform.position;
-        rotateFlag = new bool[2];
+        //rotateFlag = new bool[2];
     }
 	
 	// Update is called once per frame

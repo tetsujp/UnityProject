@@ -8,7 +8,7 @@ public class SideNote : Note {
     public override void Initialize(double judgeTime, double apperTime, int line)
     {
         base.Initialize(judgeTime, apperTime, line);
-        float[] JUDGE_TIME = GameObject.FindGameObjectWithTag("LineNote").GetComponent<LineNote>().JUDGE_TIME;
+        //float[] JUDGE_TIME = GameObject.FindGameObjectWithTag("LineNote").GetComponent<LineNote>().JUDGE_TIME;
         //自分の座標を花火が出る点に変更
         transform.position = hitPosition[line-(int)LineName.KeyLeftLeft].transform.position;
         startPostion = transform;
@@ -33,10 +33,10 @@ public class SideNote : Note {
         foreach(var chi in child){
             Vector3 distance = hitPosition[line - (int)LineName.KeyLeftLeft].transform.position - chi.transform.position;
         chi.rigidbody.velocity = new Vector3(distance.x / (float)inDisplayTime, distance.y / (float)inDisplayTime, distance.z / (float)inDisplayTime);
-        if (chi.name == child[4].name)
-        {
-            chi.FindChild("Tail").rigidbody.velocity = new Vector3(distance.normalized.x, distance.normalized.y);
-        }
+        //if (chi.name == child[4].name)
+        //{
+        //    chi.FindChild("Tail").rigidbody.velocity = new Vector3(distance.normalized.x, distance.normalized.y);
+        //}
             //chi.LookAt(hitPosition[line].transform);
         }
     }

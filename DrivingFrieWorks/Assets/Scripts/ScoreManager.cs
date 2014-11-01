@@ -19,13 +19,12 @@ public class ScoreManager : MonoBehaviour {
         canvas = GameObject.FindGameObjectWithTag("ComboCanvas");
         judge = canvas.transform.FindChild("Judge");
         combo = canvas.transform.FindChild("Combo");
-        judge.gameObject.SetActive(false);
-        combo.gameObject.SetActive(false);
 	}
     public void Initalize(int countNum)
     {
-        Finalizer();
+
         scoreCanv = GameObject.FindGameObjectWithTag("ScoreCanvas").transform.FindChild("Score");
+        Finalizer();
         SetMaxScore(countNum);
     }
     public void Finalizer()
@@ -35,6 +34,9 @@ public class ScoreManager : MonoBehaviour {
         nowScore = 0;
         percentScore = 0;
         comboCount = 0;
+        scoreCanv.gameObject.GetComponent<Text>().text = "0.00";
+        judge.gameObject.SetActive(false);
+        combo.gameObject.SetActive(false);
     }
 	// Update is called once per frame
 	void Update () {

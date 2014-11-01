@@ -92,6 +92,7 @@ public class NoteOwner : MonoBehaviour
         //NoteList削除
         foreach (var line in GameObject.FindGameObjectsWithTag("LineNote"))
         {
+            line.GetComponent<LineNote>().DestroyNote();
             Destroy(line);
         }
         playMusic.Stop();

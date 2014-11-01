@@ -306,22 +306,13 @@ public class LoadPlayMusic : MonoBehaviour
         string path = string.Format("{0}/Music/{1}/{1}.wav", Application.dataPath, playStateScript.selectName);
 
         AudioSource source = m_AudioPlayer.GetComponent<AudioSource>();
-        //曲をいれておく
-        var stockMusic=GameObject.FindGameObjectWithTag("MainScene").GetComponent<MainScene>().stockMusic;
-
-        if (stockMusic.ContainsKey(playStateScript.selectName))
-        {
-            source.clip = stockMusic[playStateScript.selectName];
-        }
-        else
-        {
             byte[] buf = File.ReadAllBytes(path);
             // analyze wav file
             m_WavInfo.Analyze(buf);
             // create audio clip
             //再利用を可能にしたい
             AudioClip clip = m_ClipMaker.Create(
-            "making_clip",
+            playStateScript.selectName,
             buf,
             m_WavInfo.TrueWavBufIdx,
             m_WavInfo.BitPerSample,
@@ -331,9 +322,7 @@ public class LoadPlayMusic : MonoBehaviour
             false,
             false
             );
-            stockMusic.Add(playStateScript.selectName, clip);
-            source.clip = stockMusic[playStateScript.selectName];
-        }
+            source.clip = clip;
 
         source.time = (float)startEditTime;
 

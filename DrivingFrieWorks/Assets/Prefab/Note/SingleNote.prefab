@@ -195,12 +195,12 @@ MonoBehaviour:
   - {fileID: 100000, guid: 254bf2f9f210fba4d99b637613a5f62d, type: 2}
   lowPosition: {fileID: 100000, guid: a09f487c38a5e734a95af48498a6f2a9, type: 2}
   startHighColor:
-  - {r: .988438249, g: .161764681, b: 1, a: 1}
-  - {r: 1, g: .972413778, b: 0, a: 1}
+  - {r: .956862748, g: .945098042, b: .788235307, a: 1}
+  - {r: 0, g: 1, b: .0470588244, a: 1}
   - {r: 1, g: .198529422, b: .198529422, a: 1}
   startLowColor:
-  - {r: .988438249, g: .161764681, b: 1, a: 1}
-  - {r: 1, g: .972413778, b: 0, a: 1}
+  - {r: .956862748, g: .945098042, b: .788235307, a: 1}
+  - {r: 0, g: 1, b: .0470588244, a: 1}
   - {r: 1, g: .198529422, b: .198529422, a: 1}
 --- !u!198 &19800000
 ParticleSystem:
@@ -464,7 +464,7 @@ ParticleSystem:
     enabled: 1
     m_Type: 0
     rate:
-      scalar: 100
+      scalar: 80
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -2423,7 +2423,7 @@ ParticleSystem:
         rgba: 4278213375
       minMaxState: 0
     startSize:
-      scalar: 12
+      scalar: 15
       maxCurve:
         serializedVersion: 2
         m_Curve:

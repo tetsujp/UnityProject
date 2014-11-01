@@ -48,7 +48,6 @@ public class SingleNote : Note {
     }
     public override void StopMove()
     {
-
         high.rigidbody.velocity = Vector3.zero;
         low.rigidbody.velocity = Vector3.zero;
     }

@@ -10,9 +10,8 @@ public class MainScene : BasicScene
     public GameObject prefabNoteOwner;
     GameObject noteOwner;
     GameObject scoreManager;
-    Transform score;
-    //曲をいれておく
-    public Dictionary<string, AudioClip> stockMusic = new Dictionary<string, AudioClip>();
+    public GameObject prefabStart;
+    //Transform score;
 
 	// Use this for initialization
 	void Start () {
@@ -20,8 +19,9 @@ public class MainScene : BasicScene
     override public void Initialize()
     {
         noteOwner=(GameObject)Instantiate(prefabNoteOwner);
-        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager");
-        score = transform.FindChild("Canvas").transform.FindChild("Score");
+        //scoreManager = GameObject.FindGameObjectWithTag("ScoreManager");
+        //score = transform.FindChild("Canvas").transform.FindChild("Score");
+        //Instantiate(prefabStart);
     }
     override public void SceneFinalize()
     {
@@ -38,11 +38,19 @@ public class MainScene : BasicScene
             noteOwner.GetComponent<NoteOwner>().FinalizeObj();
             ChangeScene(SceneName.Result);
         }
+        //if (Input.GetButtonDown("Stop"))
+        //{
+        //    noteOwner.GetComponent<NoteOwner>().FinalizeObj();
+        //    ChangeScene(SceneName.Result);
+        //}
+        
+	}
+    void LateUpdate()
+    {
         if (Input.GetButtonDown("Stop"))
         {
             noteOwner.GetComponent<NoteOwner>().FinalizeObj();
             ChangeScene(SceneName.Result);
         }
-        
-	}
+    }
 }
