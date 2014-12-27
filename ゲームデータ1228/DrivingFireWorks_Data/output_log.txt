@@ -1,0 +1,80 @@
+Initialize engine version: 4.6.1f1 (d1db7a1b5196)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GT 520  (ID=0x1040)
+    Vendor:   NVIDIA
+    VRAM:     977 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.053 seconds
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found.
+<RI> Input initialized.
+Platform assembly: C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Managed\System.dll (this message is harmless)
+IsolatedStorageException: Could not find file "C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Music\CIRCLECHANGE\Hard.txt".
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean anonymous, FileOptions options) [0x00000] in <filename unknown>:0 
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean isAsync, Boolean anonymous) [0x00000] in <filename unknown>:0 
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access) [0x00000] in <filename unknown>:0 
+  at LoadPlayMusic.Awake () [0x00000] in <filename unknown>:0 
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+NoteOwner:Start()
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at NoteOwner+<NoteDisplay>c__Iterator1.MoveNext () [0x00000] in <filename unknown>:0 
+UnityEngine.MonoBehaviour:StartCoroutine(String, Object)
+UnityEngine.MonoBehaviour:StartCoroutine(String)
+NoteOwner:Start()
+ 
+(Filename:  Line: -1)
+
+IsolatedStorageException: Could not find file "C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Music\CIRCLECHANGE\Hard.txt".
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean anonymous, FileOptions options) [0x00000] in <filename unknown>:0 
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean isAsync, Boolean anonymous) [0x00000] in <filename unknown>:0 
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access) [0x00000] in <filename unknown>:0 
+  at LoadPlayMusic.Awake () [0x00000] in <filename unknown>:0 
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+NoteOwner:Start()
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at NoteOwner+<NoteDisplay>c__Iterator1.MoveNext () [0x00000] in <filename unknown>:0 
+UnityEngine.MonoBehaviour:StartCoroutine(String, Object)
+UnityEngine.MonoBehaviour:StartCoroutine(String)
+NoteOwner:Start()
+ 
+(Filename:  Line: -1)
+
+IsolatedStorageException: Could not find file "C:\Users\tetsu\Documents\GitHub\UnityProject\ゲームデータ1228\DrivingFireWorks_Data\Music\Colorful Cookie\Hard.txt".
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean anonymous, FileOptions options) [0x00000] in <filename unknown>:0 
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean isAsync, Boolean anonymous) [0x00000] in <filename unknown>:0 
+  at System.IO.FileStream..ctor (System.String path, FileMode mode, FileAccess access) [0x00000] in <filename unknown>:0 
+  at LoadPlayMusic.Awake () [0x00000] in <filename unknown>:0 
+UnityEngine.Object:Internal_CloneSingle(Object)
+UnityEngine.Object:Instantiate(Object)
+NoteOwner:Start()
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at NoteOwner+<NoteDisplay>c__Iterator1.MoveNext () [0x00000] in <filename unknown>:0 
+UnityEngine.MonoBehaviour:StartCoroutine(String, Object)
+UnityEngine.MonoBehaviour:StartCoroutine(String)
+NoteOwner:Start()
+ 
+(Filename:  Line: -1)
+

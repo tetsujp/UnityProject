@@ -30,7 +30,8 @@ public class SelectBar : MonoBehaviour {
 	}
     public void Initialize(int count, MusicData d)
     {
-        gameObject.transform.parent = GameObject.FindWithTag("SelectCanvas").transform;
+        //gameObject.transform.parent = GameObject.FindWithTag("SelectCanvas").transform;
+        gameObject.transform.SetParent(GameObject.FindWithTag("SelectCanvas").transform);
         //transform.localPosition = new Vector3(0, 0, 0);
         transform.position += new Vector3(0, -moveToPosition * count, 0);
         firstPositionX = transform.position.x;
