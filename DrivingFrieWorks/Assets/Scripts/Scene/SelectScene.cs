@@ -27,8 +27,10 @@ public class SelectScene :  BasicScene
 
 
         //フォルダ列挙
-        string folderPath = string.Format("{0}/Music", Application.dataPath);
-        string[] allFolderPath = System.IO.Directory.GetDirectories(folderPath, "*");
+        //string folderPath = string.Format("Resources/Music");
+        //string[] allFolderPath = System.IO.Directory.GetDirectories(folderPath, "*");
+        
+
         if (allFolderPath.Length==0)
         {
             Debug.Log("フォルダが見つかりません");

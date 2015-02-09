@@ -12,7 +12,6 @@ public class LineNote : MonoBehaviour
     public LineName lineName{get;set;}
     public Transform[] pushPosition;
     public GameObject prefabPushNote;//地面に出すエフェクト
-    float oldRightVal;
     ScoreManager scoreManager;
 
     public readonly float[] JUDGE_TIME = { 0.06f, 0.10f, 0.2f };//判定時間
@@ -21,7 +20,6 @@ public class LineNote : MonoBehaviour
 	{
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
         //noteList = new List<Note>();
-        oldRightVal = Input.GetAxis(lineName.ToString());
 	}
 	
 	// Update is called once per frame
@@ -87,8 +85,7 @@ public class LineNote : MonoBehaviour
         float absTime=Mathf.Abs(judge_now_time);
         //入力時
 
-        if ((Input.GetButtonDown(lineName.ToString())&&lineName!=LineName.KeyRightRight)||
-            (lineName==LineName.KeyRightRight&&Input.GetAxis(lineName.ToString())<=-1&Input.GetAxis(lineName.ToString())!=oldRightVal))
+        if (Input.GetButtonDown(lineName.ToString()))
         {
             //下の花火を出す
             Instantiate(prefabPushNote, pushPosition[(int)lineName].position, Quaternion.identity);
@@ -123,7 +120,6 @@ public class LineNote : MonoBehaviour
             hitNoteNumber++;
             scoreManager.AddScore(JudgeKind.Miss);
         }
-        oldRightVal = Input.GetAxis(lineName.ToString());
     }
     public void SortList()
     {

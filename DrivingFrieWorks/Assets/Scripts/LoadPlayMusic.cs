@@ -35,7 +35,7 @@ public class LoadPlayMusic : MonoBehaviour
 
         //共通情報取得
         PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
-        string filePath = string.Format("{0}/Music/{1}/{2}.txt", Application.dataPath, playStateScript.selectName,playStateScript.diff.ToString());
+        string filePath = string.Format("{0}/Resources/Music/{1}/{2}.txt", Application.dataPath, playStateScript.selectName, playStateScript.diff.ToString());
         using(FileStream f = new FileStream(filePath, FileMode.Open, FileAccess.Read))
         using (StreamReader reader = new StreamReader(f))
         {
@@ -284,7 +284,8 @@ public class LoadPlayMusic : MonoBehaviour
         //{
         //    l.SortList();
         //}
-        LoadSelectMusic();
+        //LoadSelectMusic();
+        LoadSelectMusicFromMem();
         //スコアセット
         GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>().Initalize(countNote);
     }
@@ -298,7 +299,7 @@ public class LoadPlayMusic : MonoBehaviour
     }
     // member
     private WavFileInfo m_WavInfo = new WavFileInfo();
-    void LoadSelectMusic()
+    /*void LoadSelectMusic()
     {
         AudioClipMaker m_ClipMaker = GameObject.FindWithTag("AudioClipMaker").GetComponent<AudioClipMaker>();
         GameObject m_AudioPlayer = GameObject.FindWithTag("Music");
@@ -326,6 +327,16 @@ public class LoadPlayMusic : MonoBehaviour
 
         source.time = (float)startEditTime;
 
+    }*/
+    void LoadSelectMusicFromMem()
+    {
+        GameObject m_AudioPlayer = GameObject.FindWithTag("Music");
+        PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
+        AudioSource source = m_AudioPlayer.GetComponent<AudioSource>();
+        string path = "Music/" + playStateScript.selectName + "/" + playStateScript.selectName;
+        AudioClip clip = (AudioClip)Resources.Load(path);
+        source.clip = clip;
+        source.time = (float)startEditTime;
     }
 
     public LineNote[] GetAllNoteList() { return tempLoadList; }
