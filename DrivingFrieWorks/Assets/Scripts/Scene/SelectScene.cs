@@ -31,24 +31,24 @@ public class SelectScene :  BasicScene
         //string[] allFolderPath = System.IO.Directory.GetDirectories(folderPath, "*");
         
 
-        if (allFolderPath.Length==0)
-        {
-            Debug.Log("フォルダが見つかりません");
-            return;
-        }
+        //if (allFolderPath.Length==0)
+        //{
+        //    Debug.Log("フォルダが見つかりません");
+        //    return;
+        //}
         //曲取得
-        for (var i = 0; i < allFolderPath.Length;i++ )
+        //Resources内のテキストデータ取得
+        foreach (var allMusicInfoData in Resources.LoadAll<TextAsset>("Music") )
         {
-
-            using(FileStream f = new FileStream(allFolderPath[i] + "/info.txt", FileMode.Open, FileAccess.Read))
-            using (StreamReader reader = new StreamReader(f))
+            //infoのみ取得
+            if (allMusicInfoData.name != "info")
             {
-                //読み込み失敗
-                if (reader == null)
-                {
-                    Debug.Log("ファイルが見つかりません");
-                    return;
-                }
+                continue;
+            }
+
+            //using(FileStream f = new FileStream(allFolderPath[i] + "/info.txt", FileMode.Open, FileAccess.Read))
+            using (StringReader reader = new StringReader(allMusicInfoData.text))
+            {
                 string loopBuf;
 
                 //曲情報
@@ -99,7 +99,7 @@ public class SelectScene :  BasicScene
 
                 var select = (GameObject)Instantiate(selectBar);
                 var script = select.GetComponent<SelectBar>();
-                script.Initialize(i, d);
+                script.Initialize(MaxMusicNumber+1, d);
                 selectBarList.Add(script);
                 MaxMusicNumber++;
             }

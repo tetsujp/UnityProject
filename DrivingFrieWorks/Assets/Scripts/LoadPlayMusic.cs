@@ -35,9 +35,12 @@ public class LoadPlayMusic : MonoBehaviour
 
         //共通情報取得
         PlayState playStateScript = GameObject.Find("PlayState").GetComponent<PlayState>();
-        string filePath = string.Format("{0}/Resources/Music/{1}/{2}.txt", Application.dataPath, playStateScript.selectName, playStateScript.diff.ToString());
-        using(FileStream f = new FileStream(filePath, FileMode.Open, FileAccess.Read))
-        using (StreamReader reader = new StreamReader(f))
+        //string filePath = string.Format("{0}/Resources/Music/{1}/{2}.txt", Application.dataPath, playStateScript.selectName, playStateScript.diff.ToString());
+        string filePath = string.Format("Music/{0}/{1}", playStateScript.selectName,playStateScript.diff.ToString());
+        //using(FileStream f = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+        
+        var f = Resources.Load(filePath) as TextAsset;
+        using (StringReader reader = new StringReader(f.text))
         {
             //読み込み失敗
             if (reader == null)
