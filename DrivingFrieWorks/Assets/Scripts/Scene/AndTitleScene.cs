@@ -1,33 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AndTitleScene : BasicScene{
+public class AndTitleScene : MonoBehaviour{
 
 
     // Use this for initialization
     void Start()
     {
-
         Initialize();
     }
-    public override void Initialize()
+    void Initialize()
     {
-
+        IT_Gesture.onMultiTapE += OnTouchDown;
     }
-    public override void SceneFinalize()
+    void SceneFinalize()
     {
-
+        IT_Gesture.onMultiTapE -= OnTouchDown;
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTouchDown(Tap tap)
     {
-
-        if (Input.GetButtonDown("Decide"))
-        {
-            //曲選択画面へ
-
-            ChangeScene(SceneName.Select);
-        }
+        Application.LoadLevel("SelectScene");
+        //ChangeScene(SceneName.Select);
     }
 }

@@ -118,6 +118,10 @@ public class SelectScene :  BasicScene
             //曲選択
             l.gameObject.SetActive(true);
         }
+        InitializeTouch();
+    }
+    void InitializeTouch()
+    {
     }
     public override void SceneFinalize()
     {
@@ -129,8 +133,12 @@ public class SelectScene :  BasicScene
     }
 	// Update is called once per frame
 	void Update () {
+        
+	}
+    void UpdateInputKey()
+    {
         //SelectBarの移動
-        if (Input.GetButtonDown("Down")&&playCounter<MaxMusicNumber)
+        if (Input.GetButtonDown("Down") && playCounter < MaxMusicNumber)
         {
             playCounter++;
             foreach (var select in selectBarList)
@@ -139,7 +147,8 @@ public class SelectScene :  BasicScene
             }
             SetMusicData();
         }
-        else if(Input.GetButtonDown("Up")&&playCounter>0){
+        else if (Input.GetButtonDown("Up") && playCounter > 0)
+        {
             playCounter--;
             foreach (var select in selectBarList)
             {
@@ -147,24 +156,24 @@ public class SelectScene :  BasicScene
             }
             SetMusicData();
         }
-            //難易度変更
-        else if (Input.GetButtonDown("Left")&&playState.diff>Difficulty.Easy)
+        //難易度変更
+        else if (Input.GetButtonDown("Left") && playState.diff > Difficulty.Easy)
         {
-            playState.diff=playState.diff-1;
+            playState.diff = playState.diff - 1;
             SetMusicData();
         }
-        else if(Input.GetButtonDown("Right")&&playState.diff<Difficulty.Hard)
+        else if (Input.GetButtonDown("Right") && playState.diff < Difficulty.Hard)
         {
-            playState.diff = playState.diff+1;
+            playState.diff = playState.diff + 1;
             SetMusicData();
         }
-            //速度変更
-        else if (Input.GetButtonDown("IncSpeed")&&playState.multspd>PlayState.MINSPD)
+        //速度変更
+        else if (Input.GetButtonDown("IncSpeed") && playState.multspd > PlayState.MINSPD)
         {
             playState.multspd -= PlayState.CHANGESPD;
             SetMusicData();
         }
-        else if (Input.GetButtonDown("DecSpeed")&&playState.multspd<PlayState.MAXSPD)
+        else if (Input.GetButtonDown("DecSpeed") && playState.multspd < PlayState.MAXSPD)
         {
             playState.multspd += PlayState.CHANGESPD;
             SetMusicData();
@@ -176,7 +185,58 @@ public class SelectScene :  BasicScene
 
             ChangeScene(SceneName.Main);
         }
-	}
+    }
+    void UpdateInputTouch()
+    {
+        //SelectBarの移動
+        if (Input.GetButtonDown("Down") && playCounter < MaxMusicNumber)
+        {
+            playCounter++;
+            foreach (var select in selectBarList)
+            {
+                select.Move();
+            }
+            SetMusicData();
+        }
+        else if (Input.GetButtonDown("Up") && playCounter > 0)
+        {
+            playCounter--;
+            foreach (var select in selectBarList)
+            {
+                select.Move();
+            }
+            SetMusicData();
+        }
+        //難易度変更
+        else if (Input.GetButtonDown("Left") && playState.diff > Difficulty.Easy)
+        {
+            playState.diff = playState.diff - 1;
+            SetMusicData();
+        }
+        else if (Input.GetButtonDown("Right") && playState.diff < Difficulty.Hard)
+        {
+            playState.diff = playState.diff + 1;
+            SetMusicData();
+        }
+        //速度変更
+        else if (Input.GetButtonDown("IncSpeed") && playState.multspd > PlayState.MINSPD)
+        {
+            playState.multspd -= PlayState.CHANGESPD;
+            SetMusicData();
+        }
+        else if (Input.GetButtonDown("DecSpeed") && playState.multspd < PlayState.MAXSPD)
+        {
+            playState.multspd += PlayState.CHANGESPD;
+            SetMusicData();
+        }
+        //曲の決定
+        else if (Input.GetButtonDown("Decide"))
+        {
+            //Instantiate(loadPlayMusic);
+
+            ChangeScene(SceneName.Main);
+        }
+    }
     void SetMusicData()
     {
         playState.selectName = selectBarList[playCounter].data.musicName;
