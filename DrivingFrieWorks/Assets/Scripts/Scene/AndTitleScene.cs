@@ -11,14 +11,12 @@ public class AndTitleScene : MonoBehaviour{
     }
     void Initialize()
     {
-        IT_Gesture.onMultiTapE += OnTouchDown;
     }
     void SceneFinalize()
     {
-        IT_Gesture.onMultiTapE -= OnTouchDown;
     }
 
-    void OnTouchDown(Tap tap)
+    public void OnTouchDown()
     {
         Application.LoadLevel("SelectScene");
         //ChangeScene(SceneName.Select);
