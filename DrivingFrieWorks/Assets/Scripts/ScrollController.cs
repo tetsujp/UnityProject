@@ -10,13 +10,12 @@ public class ScrollController : MonoBehaviour
 
     void Start()
     {
-        for (int i = 0; i < 15; i++)
-        {
-            var item = GameObject.Instantiate(musicContent) as RectTransform;
-            item.SetParent(transform, false);
-
-            var text = item.GetComponentInChildren<Text>();
-            text.text = "item:" + i.ToString();
-        }
+        
+    }
+    public void AddMusicContent(MusicData d)
+    {
+        var item = GameObject.Instantiate(musicContent) as RectTransform;
+        item.SetParent(transform, false);
+        item.GetComponent<MusicContent>().Initialize(d);
     }
 } 
