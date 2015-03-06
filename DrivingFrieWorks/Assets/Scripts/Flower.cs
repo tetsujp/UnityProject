@@ -13,7 +13,7 @@ public class Flower : MonoBehaviour
 	void Update ()
 	{
         //自分を消す
-        if (gameObject.particleSystem.duration <= gameObject.particleSystem.time)
+        if (gameObject.GetComponent<ParticleSystem>().duration <= gameObject.GetComponent<ParticleSystem>().time)
         {
             Destroy(gameObject);
         }

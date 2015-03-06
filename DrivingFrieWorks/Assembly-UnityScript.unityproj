@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<ProjectGuid>{314DC8E7-8FA5-5E30-C9FB-2002A5320E8C}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<RootNamespace></RootNamespace>
+	<AssemblyName>Assembly-UnityScript</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_0_0;UNITY_5_0;UNITY_5;ENABLE_LICENSE_RENAME;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_NEW_HIERARCHY;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_NONPRO;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_MONO;ENABLE_PROFILER;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<DefineConstants>TRACE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+	<Reference Include="System" />
+    <Reference Include="System.XML" />
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\InputTouches\FPSDisplay\FrameRate.js" />
+     <None Include="Assets\Resources\Music\Call of Fall\info.txt" />
+     <None Include="Assets\Resources\Music\Zenostorm\info.txt" />
+     <None Include="Assets\Resources\Music\晩夏の打ち上げ花火\info.txt" />
+     <None Include="Assets\Resources\Music\Zenostorm\normal.txt" />
+     <None Include="Assets\Resources\Music\CIRCLECHANGE\info.txt" />
+     <None Include="Assets\Resources\Music\Zenostorm\easy.txt" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
+     <None Include="Assets\Resources\Music\great infiltration\hard.txt" />
+     <None Include="Assets\Resources\Music\Zenostorm\hard.txt" />
+     <None Include="Assets\Resources\Music\晩夏の打ち上げ花火\normal.txt" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
+     <None Include="Assets\Resources\Music\晩夏の打ち上げ花火\hard.txt" />
+     <None Include="Assets\Resources\Music\CIRCLECHANGE\normal.txt" />
+     <None Include="Assets\Resources\Music\great infiltration\easy.txt" />
+     <None Include="Assets\Resources\Music\Call of Fall\normal.txt" />
+     <None Include="Assets\Resources\Music\HAPPY_AFRO\normal.txt" />
+     <None Include="Assets\Resources\Music\マイムマイム\normal.txt" />
+     <None Include="Assets\Resources\Music\マイムマイム\hard.txt" />
+     <None Include="Assets\Resources\Music\Call of Fall\hard.txt" />
+     <None Include="Assets\Resources\Music\電波送信(instrumental)\normal.txt" />
+     <None Include="Assets\Resources\Music\Call of Fall\easy.txt" />
+     <None Include="Assets\Resources\Music\マイムマイム\info.txt" />
+     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\Resources\Music\電波送信(instrumental)\info.txt" />
+     <None Include="Assets\Resources\Music\CIRCLECHANGE\easy.txt" />
+     <None Include="Assets\Resources\Music\HAPPY_AFRO\hard.txt" />
+     <None Include="Assets\Resources\Music\HAPPY_AFRO\easy.txt" />
+     <None Include="Assets\Resources\Music\マイムマイム\easy.txt" />
+     <None Include="Assets\Resources\Music\HAPPY_AFRO\info.txt" />
+     <None Include="Assets\Resources\Music\great infiltration\normal.txt" />
+     <None Include="Assets\Resources\Music\晩夏の打ち上げ花火\easy.txt" />
+     <None Include="Assets\Resources\Music\CIRCLECHANGE\hard.txt" />
+     <None Include="Assets\Resources\Music\電波送信(instrumental)\easy.txt" />
+     <None Include="Assets\Resources\Music\great infiltration\info.txt" />
+     <None Include="Assets\Resources\Music\電波送信(instrumental)\hard.txt" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{54C63717-45AE-D95C-21F6-C29888A6D4BA}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+    <ProjectReference Include="Assembly-UnityScript-firstpass.unityproj">
+      <Project>{798073FE-936E-D6A8-45FA-76A78FC94328}</Project>      <Name>Assembly-UnityScript-firstpass</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+	   Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

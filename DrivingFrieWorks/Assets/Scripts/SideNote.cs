@@ -32,7 +32,7 @@ public class SideNote : Note {
             // 移動する距離を求める   
         foreach(var chi in child){
             Vector3 distance = hitPosition[line - (int)LineName.KeyLeftLeft].transform.position - chi.transform.position;
-        chi.rigidbody.velocity = new Vector3(distance.x / (float)inDisplayTime, distance.y / (float)inDisplayTime, distance.z / (float)inDisplayTime);
+        chi.GetComponent<Rigidbody>().velocity = new Vector3(distance.x / (float)inDisplayTime, distance.y / (float)inDisplayTime, distance.z / (float)inDisplayTime);
         //if (chi.name == child[4].name)
         //{
         //    chi.FindChild("Tail").rigidbody.velocity = new Vector3(distance.normalized.x, distance.normalized.y);
@@ -44,7 +44,7 @@ public class SideNote : Note {
     {
         foreach (var chi in child)
         {
-            chi.rigidbody.velocity = Vector3.zero;
+            chi.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }

@@ -33,12 +33,12 @@ public class SingleNote : Note {
         //particle.startLifetime = (float)inDisplayTime;
         // 移動する距離を求める
         Vector3 distance = hitPosition[line].transform.position - highPosition[line].transform.position;
-        high.rigidbody.velocity = new Vector3(distance.x / (float)inDisplayTime, distance.y / (float)inDisplayTime, distance.z / (float)inDisplayTime);
+        high.GetComponent<Rigidbody>().velocity = new Vector3(distance.x / (float)inDisplayTime, distance.y / (float)inDisplayTime, distance.z / (float)inDisplayTime);
         high.LookAt(hitPosition[line].transform);
 
         Vector3 distance2 = hitPosition[line].transform.position - lowPosition.transform.position;
-        low.rigidbody.velocity = new Vector3(distance2.x / (float)inDisplayTime, distance2.y / (float)inDisplayTime, distance2.z / (float)inDisplayTime);
-        low.FindChild("Tail").rigidbody.velocity = new Vector3(distance2.normalized.x,distance2.normalized.y);
+        low.GetComponent<Rigidbody>().velocity = new Vector3(distance2.x / (float)inDisplayTime, distance2.y / (float)inDisplayTime, distance2.z / (float)inDisplayTime);
+        low.FindChild("Tail").GetComponent<Rigidbody>().velocity = new Vector3(distance2.normalized.x,distance2.normalized.y);
 
         //particle.startSpeed = (float)sumTime / particle.startLifetime;
         high.GetComponent<ParticleSystem>().startLifetime = (float)inDisplayTime + JUDGE_TIME[(int)JudgeKind.Good];
@@ -48,7 +48,7 @@ public class SingleNote : Note {
     }
     public override void StopMove()
     {
-        high.rigidbody.velocity = Vector3.zero;
-        low.rigidbody.velocity = Vector3.zero;
+        high.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        low.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }
